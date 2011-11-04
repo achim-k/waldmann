@@ -20,7 +20,7 @@ int main(void) {
 // This port will be connected to the 8 switches
 		i = PINA;
 // Send output to PORTB.
-// This port will be connected to the 8 LEDs
+// This port will be connected to the 8 LEDs tttttttttttttttttttttttttttttttttt
 		PORTB = i;
 	}
 	return 1;
