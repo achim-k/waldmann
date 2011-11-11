@@ -1,0 +1,2 @@
+hardware/storage/dataflash/fs.dep hardware/storage/dataflash/fs.o hardware/storage/dataflash/fs.E hardware/storage/dataflash/fs.s: hardware/storage/dataflash/fs.c hardware/storage/dataflash/fs.h \
+ hardware/storage/dataflash/df.h config.h autoconf.h pinning.c

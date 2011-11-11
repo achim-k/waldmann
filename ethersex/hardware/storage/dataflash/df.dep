@@ -1,0 +1,2 @@
+hardware/storage/dataflash/df.dep hardware/storage/dataflash/df.o hardware/storage/dataflash/df.E hardware/storage/dataflash/df.s: hardware/storage/dataflash/df.c hardware/storage/dataflash/df.h \
+ config.h autoconf.h pinning.c core/bit-macros.h core/spi.h

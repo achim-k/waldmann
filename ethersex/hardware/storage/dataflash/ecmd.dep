@@ -1,0 +1,3 @@
+hardware/storage/dataflash/ecmd.dep hardware/storage/dataflash/ecmd.o hardware/storage/dataflash/ecmd.E hardware/storage/dataflash/ecmd.s: hardware/storage/dataflash/ecmd.c config.h autoconf.h pinning.c \
+ hardware/storage/dataflash/df.h hardware/storage/dataflash/fs.h \
+ hardware/storage/dataflash/df.h protocols/ecmd/ecmd-base.h
