@@ -323,6 +323,72 @@
     #define _SPI2X0 SPI2X
 #endif
 /* port the enc28j60 is attached to */
+<<<<<<< HEAD
+#define SPI_CS_NET_PORT SPI_CS_HARDWARE_PORT
+#define SPI_CS_NET_PIN SPI_CS_HARDWARE_PIN
+#define HAVE_SPI_CS_NET HAVE_SPI_CS_HARDWARE
+
+
+
+
+
+
+  /* onewire port range */
+    /* onewire port range configuration: */
+  
+#ifdef PD6_USED
+#  error Pinning Error: pinning/hardware/netio.m4:9: ONEWIRE has a double define on PD6_USED
+#endif
+#define PD6_USED 1
+
+
+
+
+#define ONEWIRE_BUSCOUNT 1
+#define ONEWIRE_STARTPIN 6
+#define ONEWIRE_PORT PORTD
+#define ONEWIRE_DDR DDRD
+#define ONEWIRE_PIN PIND
+#define ONEWIRE_BUSMASK 64U
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#define PORTIO_MASK_A 255
+#define PORTIO_MASK_B 15
+#define PORTIO_MASK_C 255
+#define PORTIO_MASK_D 191
+#define PORTIO_MASK_E 255
+#define PORTIO_MASK_F 255
+#define PORTIO_MASK_G 255
+
+#define DDR_MASK_A 0
+#define DDR_MASK_B 176
+#define DDR_MASK_C 0
+#define DDR_MASK_D 64
+=======
 #define SPI_CS_DF_PORT B
 #define SPI_CS_DF_PIN 1
 #define HAVE_SPI_CS_DF 1
@@ -376,6 +442,7 @@
 #define DDR_MASK_B 178
 #define DDR_MASK_C 0
 #define DDR_MASK_D 0
+>>>>>>> refs/remotes/GoogleCode/master
 #define DDR_MASK_E 0
 #define DDR_MASK_F 0
 #define DDR_MASK_G 0

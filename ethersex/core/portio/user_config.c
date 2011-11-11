@@ -3,6 +3,19 @@
 #define INPUT 1
 #define LOW 0
 #define HIGH 1
+<<<<<<< HEAD
+const char named_pin_text3640[] PROGMEM = "p1";
+const char named_pin_text15125[] PROGMEM = "p2";
+const char named_pin_text3080[] PROGMEM = "p3";
+const char named_pin_text8413[] PROGMEM = "p4";
+
+const struct PinConfiguration portio_pincfg[] PROGMEM = {
+    /*  port	pin	input	reverse? */
+	{	0,	0,	OUTPUT,	HIGH,	named_pin_text3640 }, 	/* p1	*/ 
+	{	0,	1,	OUTPUT,	HIGH,	named_pin_text15125 }, 	/* p2	*/ 
+	{	0,	2,	OUTPUT,	HIGH,	named_pin_text3080 }, 	/* p3	*/ 
+	{	0,	3,	OUTPUT,	HIGH,	named_pin_text8413 }, 	/* p4	*/ 
+=======
 const char named_pin_text32003[] PROGMEM = "p1";
 const char named_pin_text26047[] PROGMEM = "p2";
 const char named_pin_text2340[] PROGMEM = "p3";
@@ -14,6 +27,7 @@ const struct PinConfiguration portio_pincfg[] PROGMEM = {
 	{	0,	1,	OUTPUT,	HIGH,	named_pin_text26047 }, 	/* p2	*/ 
 	{	0,	2,	OUTPUT,	HIGH,	named_pin_text2340 }, 	/* p3	*/ 
 	{	0,	3,	OUTPUT,	HIGH,	named_pin_text20647 }, 	/* p4	*/ 
+>>>>>>> refs/remotes/GoogleCode/master
 
     /* mark the end of the list */
     { 255, 255, 255, 255, NULL}
