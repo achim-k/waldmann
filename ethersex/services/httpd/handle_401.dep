@@ -9,18 +9,10 @@ services/httpd/handle_401.dep services/httpd/handle_401.o services/httpd/handle_
  hardware/storage/sd_reader/sd_raw_config.h core/vfs/vfs_inline.h \
  hardware/i2c/master/vfs_eeprom.h hardware/i2c/master/vfs_eeprom_raw.h \
  hardware/i2c/master/vfs_eeprom.h hardware/camera/vfs_dc3840.h \
-<<<<<<< HEAD
  core/host/vfs.h core/vfs/vfs_teensy.h \
  protocols/ecmd/via_tcp/ecmd_state.h protocols/soap/soap.h core/debug.h \
  core/global.h protocols/syslog/syslog_debug.h \
  hardware/radio/rfm12/rfm12.h protocols/zbus/zbus.h \
  protocols/usb/usb_net.h protocols/usb/usbdrv/usbdrv.h \
  protocols/usb/usbconfig.h pinning.c \
-=======
- core/host/vfs.h protocols/ecmd/via_tcp/ecmd_state.h \
- protocols/soap/soap.h core/debug.h core/global.h \
- protocols/syslog/syslog_debug.h hardware/radio/rfm12/rfm12.h \
- protocols/zbus/zbus.h protocols/usb/usb_net.h \
- protocols/usb/usbdrv/usbdrv.h protocols/usb/usbconfig.h pinning.c \
->>>>>>> refs/remotes/GoogleCode/master
  protocols/usb/usbdrv/usbportability.h

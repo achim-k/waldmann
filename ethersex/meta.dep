@@ -11,7 +11,6 @@ meta.dep meta.o meta.E meta.s: meta.c config.h autoconf.h pinning.c core/debug.h
  hardware/storage/sd_reader/sd_raw_config.h core/vfs/vfs_inline.h \
  hardware/i2c/master/vfs_eeprom.h hardware/i2c/master/vfs_eeprom_raw.h \
  hardware/i2c/master/vfs_eeprom.h hardware/camera/vfs_dc3840.h \
-<<<<<<< HEAD
  core/host/vfs.h core/vfs/vfs_teensy.h \
  protocols/ecmd/via_tcp/ecmd_state.h protocols/soap/soap.h core/debug.h \
  hardware/radio/rfm12/rfm12.h protocols/zbus/zbus.h protocols/uip/uip.h \
@@ -19,16 +18,5 @@ meta.dep meta.o meta.E meta.s: meta.c config.h autoconf.h pinning.c core/debug.h
  protocols/usb/usbconfig.h pinning.c \
  protocols/usb/usbdrv/usbportability.h protocols/uip/uip_arp.h \
  protocols/uip/uip.h protocols/uip/ipv6.h core/periodic.h core/vfs/vfs.h \
- hardware/onewire/onewire.h protocols/uip/uip_router.h network.h \
- protocols/ecmd/via_tcp/ecmd_net.h services/httpd/httpd.h
-=======
- core/host/vfs.h protocols/ecmd/via_tcp/ecmd_state.h \
- protocols/soap/soap.h core/debug.h hardware/radio/rfm12/rfm12.h \
- protocols/zbus/zbus.h protocols/uip/uip.h protocols/usb/usb_net.h \
- protocols/usb/usbdrv/usbdrv.h protocols/usb/usbconfig.h pinning.c \
- protocols/usb/usbdrv/usbportability.h protocols/uip/uip_arp.h \
- protocols/uip/uip.h protocols/uip/ipv6.h core/periodic.h core/vfs/vfs.h \
- hardware/storage/dataflash/fs.h protocols/uip/uip_router.h network.h \
- protocols/ecmd/via_tcp/ecmd_net.h services/clock/clock.h \
- services/httpd/httpd.h services/ntp/ntp.h
->>>>>>> refs/remotes/GoogleCode/master
+ protocols/uip/uip_router.h network.h protocols/ecmd/via_tcp/ecmd_net.h \
+ services/httpd/httpd.h
