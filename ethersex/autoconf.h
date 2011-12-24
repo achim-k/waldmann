@@ -16,7 +16,7 @@
 #undef  SRAM_SUPPORT
 #undef  SRAM_MEMTEST_ON_BOOT
 #undef  BOOTLOADER_SUPPORT
-#define BOOTLOADER_START_ADDRESS 0xf000
+#define BOOTLOADER_START_ADDRESS 0xe000
 #undef  TEENSY_SUPPORT
 #undef  SPI_TIMEOUT
 #undef  USART_SPI_SUPPORT
@@ -109,8 +109,8 @@
 #define ENC28J60_SUPPORT 1
 #define CONF_ENC_MAC  "\x00\x22\xf9\x01\x90\x6e"
 #undef  IPV6_STATIC_SUPPORT
-#define set_CONF_ENC_IP(ip) uip_ipaddr((ip), 192,168,0,174 )
-#define CONF_ENC_IP "192.168.0.174"
+#define set_CONF_ENC_IP(ip) uip_ipaddr((ip), 192,168,0,170 )
+#define CONF_ENC_IP "192.168.0.170"
 #define set_CONF_ENC_IP4_NETMASK(ip) uip_ipaddr((ip), 255,255,255,0 )
 #define CONF_ENC_IP4_NETMASK "255.255.255.0"
 #undef  IEEE8021Q_SUPPORT
