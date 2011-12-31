@@ -96,3 +96,5 @@
       ecmd_feature(gw, "gw",[IP],Display/Set the address of the default router.)
     ecmd_endif()
   ecmd_endif()
+  block(Waldmann-Modul)
+  ecmd_feature(wcmd, "wcmd",Command [Value], Sendet den Command weiter.)

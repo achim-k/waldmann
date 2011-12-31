@@ -1,0 +1,1 @@
+protocols/waldmann/waldmann.dep protocols/waldmann/waldmann.o protocols/waldmann/waldmann.E protocols/waldmann/waldmann.s: protocols/waldmann/waldmann.c

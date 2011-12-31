@@ -83,6 +83,7 @@ SUBDIRS += protocols/udpIO
 SUBDIRS += protocols/udpstella
 SUBDIRS += protocols/udpcurtain
 SUBDIRS += protocols/cw
+SUBDIRS += protocols/waldmann				#waldmann makefile aufnehmen
 SUBDIRS += services/clock
 SUBDIRS += services/cron
 SUBDIRS += services/dyndns
@@ -109,6 +110,7 @@ SUBDIRS += services/curtain
 SUBDIRS += services/glcdmenu
 SUBDIRS += services/lome6
 SUBDIRS += services/projectors/sanyoZ700
+
 
 rootbuild=t
 

@@ -109,8 +109,8 @@
 #define ENC28J60_SUPPORT 1
 #define CONF_ENC_MAC  "\x00\x22\xf9\x01\x90\x6e"
 #undef  IPV6_STATIC_SUPPORT
-#define set_CONF_ENC_IP(ip) uip_ipaddr((ip), 192,168,0,170 )
-#define CONF_ENC_IP "192.168.0.170"
+#define set_CONF_ENC_IP(ip) uip_ipaddr((ip), 192,168,0,174 )
+#define CONF_ENC_IP "192.168.0.174"
 #define set_CONF_ENC_IP4_NETMASK(ip) uip_ipaddr((ip), 255,255,255,0 )
 #define CONF_ENC_IP4_NETMASK "255.255.255.0"
 #undef  IEEE8021Q_SUPPORT
@@ -564,6 +564,7 @@
 #undef  CW_PWM_FREQ_SUPPORT
 #undef  CW_RFM12_ASK_SUPPORT
 #undef  DEBUG_CW
+#define WALDMANN_SUPPORT 1
 
 /*
  * Applications
