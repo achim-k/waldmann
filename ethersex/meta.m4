@@ -31,6 +31,8 @@
   net_init(init_enc28j60)
   mainloop(network_process)
   timer(50, enc28j60_periodic())
+  header(hardware/i2c/master/i2c_master.h)
+  initearly(i2c_master_init)
   header(hardware/onewire/onewire.h)
   init(onewire_init)
   ifdef(`conf_ONEWIRE_POLLING',`timer(40, ow_periodic())')

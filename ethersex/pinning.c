@@ -32,6 +32,81 @@
 #define PIN_PULSE(pin) do { PORT_CHAR(pin ## _PORT) &= ~_BV(pin ## _PIN); \
                               PORT_CHAR(pin ## _PORT) ^= _BV(pin ## _PIN); } while(0)
 
+/* spi defines */
+#define SPI_MOSI_PORT B
+#define SPI_MOSI_PIN 5
+#define HAVE_SPI_MOSI 1
+
+
+
+#ifdef PB5_USED
+#  error Pinning Error: pinning/controllers/atmega32.m4:21: SPI_MOSI has a double define on PB5
+#endif
+#define PB5_USED 1
+
+
+#define SPI_MISO_PORT B
+#define SPI_MISO_PIN 6
+#define HAVE_SPI_MISO 1
+
+
+
+#ifdef PB6_USED
+#  error Pinning Error: pinning/controllers/atmega32.m4:21: SPI_MISO has a double define on PB6
+#endif
+#define PB6_USED 1
+
+
+#define SPI_SCK_PORT B
+#define SPI_SCK_PIN 7
+#define HAVE_SPI_SCK 1
+
+
+
+#ifdef PB7_USED
+#  error Pinning Error: pinning/controllers/atmega32.m4:21: SPI_SCK has a double define on PB7
+#endif
+#define PB7_USED 1
+
+
+#define SPI_CS_HARDWARE_PORT B
+#define SPI_CS_HARDWARE_PIN 4
+#define HAVE_SPI_CS_HARDWARE 1
+
+
+
+#ifdef PB4_USED
+#  error Pinning Error: pinning/controllers/atmega32.m4:21: SPI_CS_HARDWARE has a double define on PB4
+#endif
+#define PB4_USED 1
+
+
+
+
+  /* I2C pins */
+  #define SDA_PORT C
+#define SDA_PIN 1
+#define HAVE_SDA 1
+
+
+
+#ifdef PC1_USED
+#  error Pinning Error: pinning/controllers/atmega32.m4:29: SDA has a double define on PC1
+#endif
+#define PC1_USED 1
+
+
+  #define SCL_PORT C
+#define SCL_PIN 0
+#define HAVE_SCL 1
+
+
+
+#ifdef PC0_USED
+#  error Pinning Error: pinning/controllers/atmega32.m4:29: SCL has a double define on PC0
+#endif
+#define PC0_USED 1
+
 
 
 #define ADC_CHANNELS 8
@@ -322,15 +397,15 @@
 
 
 #define PORTIO_MASK_A 255
-#define PORTIO_MASK_B 255
-#define PORTIO_MASK_C 255
+#define PORTIO_MASK_B 15
+#define PORTIO_MASK_C 252
 #define PORTIO_MASK_D 191
 #define PORTIO_MASK_E 255
 #define PORTIO_MASK_F 255
 #define PORTIO_MASK_G 255
 
 #define DDR_MASK_A 0
-#define DDR_MASK_B 0
+#define DDR_MASK_B 176
 #define DDR_MASK_C 0
 #define DDR_MASK_D 64
 #define DDR_MASK_E 0

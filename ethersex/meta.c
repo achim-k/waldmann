@@ -46,6 +46,7 @@ volatile uint8_t newtick;
 #include "core/periodic.h"
 #include "core/vfs/vfs.h"
 #include "hardware/ethernet/enc28j60.h"
+#include "hardware/i2c/master/i2c_master.h"
 #include "hardware/onewire/onewire.h"
 #include "protocols/uip/uip.h"
 #include "protocols/uip/uip_router.h"
@@ -389,6 +390,7 @@ ethersex_meta_init (void)
     signal(SIGINT, ethersex_meta_exit);
 #endif
 
+    i2c_master_init ();
     network_init ();
     periodic_init ();
     onewire_init ();
