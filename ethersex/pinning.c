@@ -32,102 +32,59 @@
 #define PIN_PULSE(pin) do { PORT_CHAR(pin ## _PORT) &= ~_BV(pin ## _PIN); \
                               PORT_CHAR(pin ## _PORT) ^= _BV(pin ## _PIN); } while(0)
 
-/* spi defines */
-#define SPI_MOSI_PORT B
-#define SPI_MOSI_PIN 5
-#define HAVE_SPI_MOSI 1
-
-
-
-#ifdef PB5_USED
-#  error Pinning Error: pinning/controllers/atmega644.m4:23: SPI_MOSI has a double define on PB5
-#endif
-#define PB5_USED 1
-
-
-#define SPI_MISO_PORT B
-#define SPI_MISO_PIN 6
-#define HAVE_SPI_MISO 1
-
-
-
-#ifdef PB6_USED
-#  error Pinning Error: pinning/controllers/atmega644.m4:23: SPI_MISO has a double define on PB6
-#endif
-#define PB6_USED 1
-
-
-#define SPI_SCK_PORT B
-#define SPI_SCK_PIN 7
-#define HAVE_SPI_SCK 1
-
-
-
-#ifdef PB7_USED
-#  error Pinning Error: pinning/controllers/atmega644.m4:23: SPI_SCK has a double define on PB7
-#endif
-#define PB7_USED 1
-
-
-#define SPI_CS_HARDWARE_PORT B
-#define SPI_CS_HARDWARE_PIN 4
-#define HAVE_SPI_CS_HARDWARE 1
-
-
-
-#ifdef PB4_USED
-#  error Pinning Error: pinning/controllers/atmega644.m4:23: SPI_CS_HARDWARE has a double define on PB4
-#endif
-#define PB4_USED 1
-
-
-
 
 
 #define ADC_CHANNELS 8
 
-#define _ATMEGA644
+/* MCU doesn't support toggling pins by writing to PINx register */
+#define PINx_TOGGLE_WORKAROUND
 
-#define _SPMCR SPMCSR
+#define _ATMEGA32
 
-/* ATmega644 specific adjustments */
+#define _SPMCR SPMCR
+
+/* ATmega32 specific adjustments */
+#define USART0_UDRE_vect USART_UDRE_vect
+#define USART0_RX_vect USART_RXC_vect
+#define USART0_TX_vect USART_TXC_vect
+#define UPE PE /* parity error */
 #define _IVREG MCUCR
-#define _EIMSK EIMSK
-#define _EICRA EICRA
+#define _EIMSK GICR
+#define _EICRA MCUCR
 
 /* Watchdog status register */
-#define MCU_STATUS_REGISTER  MCUSR
+#define MCU_STATUS_REGISTER  MCUCSR
 
 /* Generic timer macros */
-#define TC0_PRESCALER_1      {TCCR0B&=~(_BV(CS02)|_BV(CS01));TCCR0B|=_BV(CS00);}
-#define TC0_PRESCALER_8      {TCCR0B&=~(_BV(CS02)|_BV(CS00));TCCR0B|=_BV(CS01);}
-#define TC0_PRESCALER_64     {TCCR0B&=~(_BV(CS02));TCCR0B|=_BV(CS01)|_BV(CS02);}
-#define TC0_PRESCALER_256    {TCCR0B&=~(_BV(CS01)|_BV(CS00));TCCR0B|=_BV(CS02);}
-#define TC0_PRESCALER_1024   {TCCR0B&=~(_BV(CS01));TCCR0B|=_BV(CS02)|_BV(CS00);}
+#define TC0_PRESCALER_1      {TCCR0&=~(_BV(CS02)|_BV(CS01));TCCR0|=_BV(CS00);}
+#define TC0_PRESCALER_8      {TCCR0&=~(_BV(CS02)|_BV(CS00));TCCR0|=_BV(CS01);}
+#define TC0_PRESCALER_64     {TCCR0&=~(_BV(CS02));TCCR0|=_BV(CS01)|_BV(CS02);}
+#define TC0_PRESCALER_256    {TCCR0&=~(_BV(CS01)|_BV(CS00));TCCR0|=_BV(CS02);}
+#define TC0_PRESCALER_1024   {TCCR0&=~(_BV(CS01));TCCR0|=_BV(CS02)|_BV(CS00);}
 
-#define TC0_MODE_OFF	     {TCCR0A&=~(_BV(WGM01)|_BV(WGM00));TCCR0B&=~(_BV(WGM02));}
-#define TC0_MODE_PWM         {TCCR0A&=~(_BV(WGM01));TCCR0A|=_BV(WGM00);TCCR0B&=~(_BV(WGM02));}
-#define TC0_MODE_CTC         {TCCR0A&=~(_BV(WGM00));TCCR0A|=_BV(WGM01);TCCR0B&=~(_BV(WGM02));}
-#define TC0_MODE_PWMFAST     {TCCR0A|=_BV(WGM01)|_BV(WGM00);TCCR0B&=~(_BV(WGM02));}
+#define TC0_MODE_OFF	     {TCCR0&=~(_BV(WGM01)|_BV(WGM00));}
+#define TC0_MODE_PWM         {TCCR0&=~(_BV(WGM01));TCCR0|=_BV(WGM00);}
+#define TC0_MODE_CTC         {TCCR0&=~(_BV(WGM00));TCCR0|=_BV(WGM01);}
+#define TC0_MODE_PWMFAST     {TCCR0|=_BV(WGM01)|_BV(WGM00);}
 
-#define TC0_OUTPUT_COMPARE_NONE   {TCCR0A&=~(_BV(COM0A1)|_BV(COM0A0));}
-#define TC0_OUTPUT_COMPARE_TOGGLE {TCCR0A&=~(_BV(COM0A1));TCCR0A|=_BV(COM0A0);}
-#define TC0_OUTPUT_COMPARE_CLEAR  {TCCR0A&=~(_BV(COM0A0));TCCR0A|=_BV(COM0A1);}
-#define TC0_OUTPUT_COMPARE_SET    {TCCR0A|=_BV(COM0A1)|_BV(COM0A0);}
+#define TC0_OUTPUT_COMPARE_NONE   {TCCR0&=~(_BV(COM01)|_BV(COM00));}
+#define TC0_OUTPUT_COMPARE_TOGGLE {TCCR0&=~(_BV(COM01));TCCR0|=_BV(COM00);}
+#define TC0_OUTPUT_COMPARE_CLEAR  {TCCR0&=~(_BV(COM00));TCCR0|=_BV(COM01);}
+#define TC0_OUTPUT_COMPARE_SET    {TCCR0|=_BV(COM01)|_BV(COM00);}
 
 #define TC0_COUNTER_CURRENT  TCNT0
-#define TC0_COUNTER_COMPARE  OCR0A
+#define TC0_COUNTER_COMPARE  OCR0
 
-#define TC0_INT_COMPARE_ON   TIMSK0|=_BV(OCIE0A);
-#define TC0_INT_COMPARE_OFF  TIMSK0&=~_BV(OCIE0A);
-#define TC0_INT_OVERFLOW_ON  TIMSK0|=_BV(TOIE0);
-#define TC0_INT_OVERFLOW_OFF TIMSK0&=~_BV(TOIE0);
+#define TC0_INT_COMPARE_ON   TIMSK|=_BV(OCIE0);
+#define TC0_INT_COMPARE_OFF  TIMSK&=~_BV(OCIE0);
+#define TC0_INT_OVERFLOW_ON  TIMSK|=_BV(TOIE0);
+#define TC0_INT_OVERFLOW_OFF TIMSK&=~_BV(TOIE0);
 
-#define TC0_INT_OVERFLOW_TST (TIFR0&_BV(TOV0))
-#define TC0_INT_OVERFLOW_CLR TIFR0=_BV(TOV0);
+#define TC0_INT_OVERFLOW_TST (TIFR&_BV(TOV0))
+#define TC0_INT_OVERFLOW_CLR TIFR=_BV(TOV0);
 
 #define TC0_VECTOR_OVERFLOW  TIMER0_OVF_vect
-#define TC0_VECTOR_COMPARE   TIMER0_COMPA_vect
+#define TC0_VECTOR_COMPARE   TIMER0_COMP_vect
 
 #define TC1_PRESCALER_1      {TCCR1B&=~(_BV(CS12)|_BV(CS11));TCCR1B|=_BV(CS10);}
 #define TC1_PRESCALER_8      {TCCR1B&=~(_BV(CS12)|_BV(CS10));TCCR1B|=_BV(CS11);}
@@ -135,10 +92,10 @@
 #define TC1_PRESCALER_256    {TCCR1B&=~(_BV(CS11)|_BV(CS10));TCCR1B|=_BV(CS12);}
 #define TC1_PRESCALER_1024   {TCCR1B&=~(_BV(CS11));TCCR1B|=_BV(CS12)|_BV(CS10);}
 
-#define TC1_MODE_OFF     {TCCR1A&=~(_BV(WGM11)|_BV(WGM10));TCCR1B&=~(_BV(WGM12)|_BV(WGM13));}
-#define TC1_MODE_PWM     {TCCR1A&=~(_BV(WGM11));TCCR1A|=_BV(WGM10);TCCR1B&=~(_BV(WGM12)|_BV(WGM13));}
-#define TC1_MODE_CTC     {TCCR1A&=~(_BV(WGM11)|_BV(WGM10));TCCR1B|=_BV(WGM12);TCCR1B&=~(_BV(WGM13));}
-#define TC1_MODE_PWMFAST {TCCR1A&=~(_BV(WGM11));TCCR1A|=_BV(WGM10);TCCR1B|=_BV(WGM12);TCCR1B&=~(_BV(WGM13));}
+#define TC1_MODE_OFF	     {TCCR1A&=~(_BV(WGM11)|_BV(WGM10));TCCR1B&=~(_BV(WGM12));}
+#define TC1_MODE_PWM         {TCCR1A&=~(_BV(WGM11));TCCR1A|=_BV(WGM10);TCCR1B&=~(_BV(WGM12));}
+#define TC1_MODE_CTC         {TCCR1A&=~(_BV(WGM10));TCCR1A|=_BV(WGM11);TCCR1B&=~(_BV(WGM12));}
+#define TC1_MODE_PWMFAST     {TCCR1A|=_BV(WGM11)|_BV(WGM10);TCCR1B&=~(_BV(WGM12));}
 
 #define TC1_OUTPUT_COMPARE_NONE   {TCCR1A&=~(_BV(COM1A1)|_BV(COM1A0));}
 #define TC1_OUTPUT_COMPARE_TOGGLE {TCCR1A&=~(_BV(COM1A1));TCCR1A|=_BV(COM1A0);}
@@ -148,48 +105,48 @@
 #define TC1_COUNTER_CURRENT  TCNT1
 #define TC1_COUNTER_COMPARE  OCR1A
 
-#define TC1_INT_COMPARE_ON   TIMSK1|=_BV(OCIE1A);
-#define TC1_INT_COMPARE_OFF  TIMSK1&=~_BV(OCIE1A);
-#define TC1_INT_OVERFLOW_ON  TIMSK1|=_BV(TOIE1);
-#define TC1_INT_OVERFLOW_OFF TIMSK1&=~_BV(TOIE1);
+#define TC1_INT_COMPARE_ON   TIMSK|=_BV(OCIE1A);
+#define TC1_INT_COMPARE_OFF  TIMSK&=~_BV(OCIE1A);
+#define TC1_INT_OVERFLOW_ON  TIMSK|=_BV(TOIE1);
+#define TC1_INT_OVERFLOW_OFF TIMSK&=~_BV(TOIE1);
 
-#define TC1_INT_OVERFLOW_TST (TIFR1&_BV(TOV1))
-#define TC1_INT_OVERFLOW_CLR TIFR1=_BV(TOV1);
+#define TC1_INT_OVERFLOW_TST (TIFR&_BV(TOV1))
+#define TC1_INT_OVERFLOW_CLR TIFR=_BV(TOV1);
 
 #define TC1_VECTOR_OVERFLOW  TIMER1_OVF_vect
 #define TC1_VECTOR_COMPARE   TIMER1_COMPA_vect
 
-#define TC2_PRESCALER_1      {TCCR2B&=~(_BV(CS22)|_BV(CS21));TCCR2B|=_BV(CS20);}
-#define TC2_PRESCALER_8      {TCCR2B&=~(_BV(CS22)|_BV(CS20));TCCR2B|=_BV(CS21);}
-#define TC2_PRESCALER_32     {TCCR2B&=~(_BV(CS22));TCCR2B|=_BV(CS21)|_BV(CS22);}
-#define TC2_PRESCALER_64     {TCCR2B&=~(_BV(CS21)|_BV(CS20));TCCR2B|=_BV(CS22);}
-#define TC2_PRESCALER_128    {TCCR2B&=~(_BV(CS21));TCCR2B|=_BV(CS22)|_BV(CS20);}
-#define TC2_PRESCALER_256    {TCCR2B&=~(_BV(CS20));TCCR2B|=_BV(CS22)|_BV(CS21);}
-#define TC2_PRESCALER_1024   {TCCR2B|=_BV(CS22)|_BV(CS21)|_BV(CS20);}
+#define TC2_PRESCALER_1      {TCCR2&=~(_BV(CS22)|_BV(CS21));TCCR2|=_BV(CS20);}
+#define TC2_PRESCALER_8      {TCCR2&=~(_BV(CS22)|_BV(CS20));TCCR2|=_BV(CS21);}
+#define TC2_PRESCALER_32     {TCCR2&=~(_BV(CS22));TCCR2|=_BV(CS21)|_BV(CS20);}
+#define TC2_PRESCALER_64     {TCCR2&=~(_BV(CS21)|_BV(CS20));TCCR2|=_BV(CS22);}
+#define TC2_PRESCALER_128    {TCCR2&=~(_BV(CS21));TCCR2|=_BV(CS20)|_BV(CS22);}
+#define TC2_PRESCALER_256    {TCCR2&=~(_BV(CS20));TCCR2|=_BV(CS22)|_BC(CS21);}
+#define TC2_PRESCALER_1024   {TCCR2|=_BV(CS22)|_BV(CS21)|_BV(CS20);}
 
-#define TC2_MODE_OFF	     {TCCR2A&=~(_BV(WGM21)|_BV(WGM20));TCCR2B&=~(_BV(WGM22));}
-#define TC2_MODE_PWM         {TCCR2A&=~(_BV(WGM21));TCCR2A|=_BV(WGM20);TCCR2B&=~(_BV(WGM22));}
-#define TC2_MODE_CTC         {TCCR2A&=~(_BV(WGM20));TCCR2A|=_BV(WGM21);TCCR2B&=~(_BV(WGM22));}
-#define TC2_MODE_PWMFAST     {TCCR2A|=_BV(WGM21)|_BV(WGM20);TCCR2B&=~(_BV(WGM22));}
+#define TC2_MODE_OFF	     {TCCR2&=~(_BV(WGM21)|_BV(WGM20));}
+#define TC2_MODE_PWM         {TCCR2&=~(_BV(WGM21));TCCR2|=_BV(WGM20);}
+#define TC2_MODE_CTC         {TCCR2&=~(_BV(WGM20));TCCR2|=_BV(WGM21);}
+#define TC2_MODE_PWMFAST     {TCCR2|=_BV(WGM21)|_BV(WGM20);}
 
-#define TC2_OUTPUT_COMPARE_NONE   {TCCR2A&=~(_BV(COM2A1)|_BV(COM2A0));}
-#define TC2_OUTPUT_COMPARE_TOGGLE {TCCR2A&=~(_BV(COM2A1));TCCR2A|=_BV(COM2A0);}
-#define TC2_OUTPUT_COMPARE_CLEAR  {TCCR2A&=~(_BV(COM2A0));TCCR2A|=_BV(COM2A1);}
-#define TC2_OUTPUT_COMPARE_SET    {TCCR2A|=_BV(COM2A1)|_BV(COM2A0);}
+#define TC2_OUTPUT_COMPARE_NONE   {TCCR2&=~(_BV(COM21)|_BV(COM20));}
+#define TC2_OUTPUT_COMPARE_TOGGLE {TCCR2&=~(_BV(COM21));TCCR2|=_BV(COM20);}
+#define TC2_OUTPUT_COMPARE_CLEAR  {TCCR2&=~(_BV(COM20));TCCR2|=_BV(COM21);}
+#define TC2_OUTPUT_COMPARE_SET    {TCCR2|=_BV(COM21)|_BV(COM20);}
 
 #define TC2_COUNTER_CURRENT  TCNT2
-#define TC2_COUNTER_COMPARE  OCR2A
+#define TC2_COUNTER_COMPARE  OCR2
 
-#define TC2_INT_COMPARE_ON   TIMSK2|=_BV(OCIE2A);
-#define TC2_INT_COMPARE_OFF  TIMSK2&=~_BV(OCIE2A);
-#define TC2_INT_OVERFLOW_ON  TIMSK2|=_BV(TOIE2);
-#define TC2_INT_OVERFLOW_OFF TIMSK2&=~_BV(TOIE2);
+#define TC2_INT_COMPARE_ON   TIMSK|=_BV(OCIE2);
+#define TC2_INT_COMPARE_OFF  TIMSK&=~_BV(OCIE2);
+#define TC2_INT_OVERFLOW_ON  TIMSK|=_BV(TOIE2);
+#define TC2_INT_OVERFLOW_OFF TIMSK&=~_BV(TOIE2);
 
-#define TC2_INT_OVERFLOW_TST (TIFR2&_BV(TOV2))
-#define TC2_INT_OVERFLOW_CLR TIFR2=_BV(TOV2);
+#define TC2_INT_OVERFLOW_TST (TIFR&_BV(TOV2))
+#define TC2_INT_OVERFLOW_CLR TIFR=_BV(TOV2);
 
 #define TC2_VECTOR_OVERFLOW  TIMER2_OVF_vect
-#define TC2_VECTOR_COMPARE   TIMER2_COMPA_vect
+#define TC2_VECTOR_COMPARE   TIMER2_COMP_vect
 
 /* First Asyncronous Timer */
 /* Flag for asyncronous operation */
@@ -227,7 +184,7 @@
 #define TIMER_8_AS_1_VECTOR_OVERFLOW TC2_VECTOR_OVERFLOW
 #define TIMER_8_AS_1_VECTOR_COMPARE TC2_VECTOR_COMPARE
 /* Busy flags */
-#define TIMER_8_AS_1_COMPARE_CONTROL_BUSY (TCR2AUB | TCR2BUB)
+#define TIMER_8_AS_1_COMPARE_CONTROL_BUSY TCR2UB
 #define TIMER_8_AS_1_COUNTER_CURRENT_BUSY TCN2UB
 #define TIMER_8_AS_1_COUNTER_CURRENT_BUSY_TST (ASSR&_BV(TIMER_8_AS_1_COUNTER_CURRENT_BUSY))
 #define TIMER_8_AS_1_COMPARE_CONTROL_BUSY_TST (ASSR&_BV(TIMER_8_AS_1_COMPARE_CONTROL_BUSY))
@@ -235,49 +192,36 @@
 #define TIMER_8_AS_1_COUNTER_BUSY_TST (TIMER_8_AS_1_COMPARE_CONTROL_BUSY_TST || TIMER_8_AS_1_COUNTER_CURRENT_BUSY_TST)
 
 
-/* Timer0 - Stella */
-#define _TCCR0_PRESCALE TCCR0B
-#define _OUTPUT_COMPARE_IE0 OCIE0B
-#define _OUTPUT_COMPARE_REG0 OCR0B
-#define _VECTOR_OUTPUT_COMPARE0 TIMER0_COMPB_vect
-#define _VECTOR_OVERFLOW0 TIMER0_OVF_vect
-#define _CS00 CS00
-#define _CS01 CS01
-#define _CS02 CS02
-#define _COM00 COM0B0
-#define _COM01 COM0B1
-#define _WGM00 WGM00
-#define _WGM01 WGM01
-#define _TCNT0 TCNT0
-
 
 /* Timer2 - Stella */
-#define _TCCR2_PRESCALE TCCR2B
-#define _OUTPUT_COMPARE_IE2 OCIE2B
-#define _OUTPUT_COMPARE_REG2 OCR2B
-#define _VECTOR_OUTPUT_COMPARE2 TIMER2_COMPB_vect
+#define _TCCR2_PRESCALE TCCR2
+#define _OUTPUT_COMPARE_IE2 OCIE2
+#define _OUTPUT_COMPARE_REG2 OCR2
+#define _VECTOR_OUTPUT_COMPARE2 TIMER2_COMP_vect
 #define _VECTOR_OVERFLOW2 TIMER2_OVF_vect
-#define _TIMSK_TIMER2 TIMSK2
+#define _TIMSK_TIMER2 TIMSK
+#define TCR2BUB TCR2UB
 #define _CS20 CS20
 #define _CS21 CS21
 #define _CS22 CS22
-#define _COM20 COM2B0
-#define _COM21 COM2B1
+#define _COM20 COM20
+#define _COM21 COM21
 #define _WGM20 WGM20
 #define _WGM21 WGM21
 #define _TCNT2 TCNT2
 
-/* Timer0 - PWM Melody */
-#define _PWM_MELODY_COMP TIMER2_COMPA_vect
-#define _PWM_MELODY_OCR OCR2A
-#define _PWM_MELODY_TRCCRA TCCR2A
-#define _PWM_MELODY_TRCCRB TCCR2B
-#define _PWM_MELODY_COM1 COM2A1
-#define _PWM_MELODY_COM0 COM2B0
+/* Timer2 - PWM Melody */
+#define _PWM_MELODY_COMP TIMER2_COMP_vect
+#define _PWM_MELODY_OCR OCR2
+#define _PWM_MELODY_TRCCRA TCCR2
+#define _PWM_MELODY_TRCCRB TCCR2
+#define _PWM_MELODY_COM1 COM21
+#define _PWM_MELODY_COM0 COM20
 #define _PWM_MELODY_WGM0 WGM20
 #define _PWM_MELODY_CS0 CS20
-#define _PWM_MELODY_TIMSK TIMSK2
-#define _PWM_MELODY_OCIE OCIE2A
+#define _PWM_MELODY_TIMSK TIMSK
+#define _PWM_MELODY_OCIE OCIE2
+
 
 /* workaround for avr-libc devs not being able to decide how these registers
  * should be named... */
@@ -322,6 +266,7 @@
 #else
     #define _SPI2X0 SPI2X
 #endif
+
 /* port the enc28j60 is attached to */
 #define SPI_CS_NET_PORT SPI_CS_HARDWARE_PORT
 #define SPI_CS_NET_PIN SPI_CS_HARDWARE_PIN
@@ -329,6 +274,26 @@
 
 
 
+
+
+
+  /* onewire port range */
+    /* onewire port range configuration: */
+  
+#ifdef PD6_USED
+#  error Pinning Error: pinning/hardware/netio.m4:9: ONEWIRE has a double define on PD6_USED
+#endif
+#define PD6_USED 1
+
+
+
+
+#define ONEWIRE_BUSCOUNT 1
+#define ONEWIRE_STARTPIN 6
+#define ONEWIRE_PORT PORTD
+#define ONEWIRE_DDR DDRD
+#define ONEWIRE_PIN PIND
+#define ONEWIRE_BUSMASK 64U
 
 
 
@@ -357,17 +322,17 @@
 
 
 #define PORTIO_MASK_A 255
-#define PORTIO_MASK_B 15
+#define PORTIO_MASK_B 255
 #define PORTIO_MASK_C 255
-#define PORTIO_MASK_D 255
+#define PORTIO_MASK_D 191
 #define PORTIO_MASK_E 255
 #define PORTIO_MASK_F 255
 #define PORTIO_MASK_G 255
 
 #define DDR_MASK_A 0
-#define DDR_MASK_B 176
+#define DDR_MASK_B 0
 #define DDR_MASK_C 0
-#define DDR_MASK_D 0
+#define DDR_MASK_D 64
 #define DDR_MASK_E 0
 #define DDR_MASK_F 0
 #define DDR_MASK_G 0
