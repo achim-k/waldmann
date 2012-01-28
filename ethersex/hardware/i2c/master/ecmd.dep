@@ -1,0 +1,8 @@
+hardware/i2c/master/ecmd.dep hardware/i2c/master/ecmd.o hardware/i2c/master/ecmd.E hardware/i2c/master/ecmd.s: hardware/i2c/master/ecmd.c autoconf.h config.h autoconf.h \
+ pinning.c core/debug.h core/global.h protocols/syslog/syslog_debug.h \
+ hardware/i2c/master/i2c_master.h hardware/i2c/master/i2c_generic.h \
+ hardware/i2c/master/i2c_lm75.h hardware/i2c/master/i2c_ds1631.h \
+ hardware/i2c/master/i2c_tsl2550.h hardware/i2c/master/i2c_24CXX.h \
+ hardware/i2c/master/i2c_pca9531.h hardware/i2c/master/i2c_pca9685.h \
+ hardware/i2c/master/i2c_pcf8574x.h hardware/i2c/master/i2c_max7311.h \
+ protocols/ecmd/ecmd-base.h

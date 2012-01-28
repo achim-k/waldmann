@@ -84,3 +84,6 @@ ifdef(`conf_HD44780', `
   pin(HD44780_D7, PD7)
 ')
 
+pin(SOFT_SPI_MOSI, PD2)
+pin(SOFT_SPI_MISO, PD3)
+pin(SOFT_SPI_SCK,  PD4)

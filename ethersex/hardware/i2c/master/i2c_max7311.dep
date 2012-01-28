@@ -1,0 +1,4 @@
+hardware/i2c/master/i2c_max7311.dep hardware/i2c/master/i2c_max7311.o hardware/i2c/master/i2c_max7311.E hardware/i2c/master/i2c_max7311.s: hardware/i2c/master/i2c_max7311.c autoconf.h config.h \
+ autoconf.h pinning.c core/debug.h core/global.h \
+ protocols/syslog/syslog_debug.h hardware/i2c/master/i2c_master.h \
+ hardware/i2c/master/i2c_max7311.h

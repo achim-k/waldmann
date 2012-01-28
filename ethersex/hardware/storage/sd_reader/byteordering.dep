@@ -1,0 +1,2 @@
+hardware/storage/sd_reader/byteordering.dep hardware/storage/sd_reader/byteordering.o hardware/storage/sd_reader/byteordering.E hardware/storage/sd_reader/byteordering.s: hardware/storage/sd_reader/byteordering.c \
+ hardware/storage/sd_reader/byteordering.h

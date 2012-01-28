@@ -1,0 +1,6 @@
+hardware/storage/sd_reader/init.dep hardware/storage/sd_reader/init.o hardware/storage/sd_reader/init.E hardware/storage/sd_reader/init.s: hardware/storage/sd_reader/init.c config.h autoconf.h pinning.c \
+ hardware/storage/sd_reader/sd_raw.h \
+ hardware/storage/sd_reader/sd_raw_config.h \
+ hardware/storage/sd_reader/partition.h \
+ hardware/storage/sd_reader/partition_config.h \
+ hardware/storage/sd_reader/fat.h hardware/storage/sd_reader/fat_config.h

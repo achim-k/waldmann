@@ -24,12 +24,47 @@
 #include <avr/pgmspace.h>				//Wegen PSTR
 #include "protocols/ecmd/ecmd-base.h"
 
+#ifndef SOFT_SPI_SUPPORT
+	#include "config.h"
+	#include <avr/io.h>
+#endif
+
+uint8_t
+soft_spi_send(uint8_t outdata)
+{
+  DDR_CONFIG_IN(SOFT_SPI_MISO);
+
+  uint8_t j, indata = indata;
+  for(j = 0; j < 8; j++)
+  {
+	if(outdata & 0x80)
+	  PIN_SET(SOFT_SPI_MOSI);
+	else
+	  PIN_CLEAR(SOFT_SPI_MOSI);
+
+	PIN_SET(SOFT_SPI_SCK);
+	indata <<= 1;
+
+	if(PIN_HIGH(SOFT_SPI_MISO))
+	  indata |= 1;
+
+	PIN_CLEAR(SOFT_SPI_SCK);
+
+	outdata <<= 1;
+  }
+
+  DDR_CONFIG_OUT(SOFT_SPI_MISO);
+  return indata;
+}
+
+
 int16_t parse_cmd_wcmd(char *cmd, char *output, uint16_t len)
 {
 //	uint8_t uint_value = 174;
 //
 //	return ECMD_FINAL(snprintf_P(output, len, PSTR("%u"), uint_value));
-	return ECMD_FINAL_OK;
+//	return ECMD_FINAL_OK;
+	return ECMD_FINAL(snprintf_P(output, len, PSTR("%u"), (int16_t)soft_spi_send(0)));
 }
 
 /*

@@ -1,0 +1,4 @@
+hardware/i2c/master/i2c_generic.dep hardware/i2c/master/i2c_generic.o hardware/i2c/master/i2c_generic.E hardware/i2c/master/i2c_generic.s: hardware/i2c/master/i2c_generic.c config.h autoconf.h \
+ pinning.c autoconf.h core/debug.h core/global.h \
+ protocols/syslog/syslog_debug.h core/bit-macros.h \
+ hardware/i2c/master/i2c_master.h hardware/i2c/master/i2c_generic.h

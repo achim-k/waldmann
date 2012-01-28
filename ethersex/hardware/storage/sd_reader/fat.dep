@@ -1,0 +1,8 @@
+hardware/storage/sd_reader/fat.dep hardware/storage/sd_reader/fat.o hardware/storage/sd_reader/fat.E hardware/storage/sd_reader/fat.s: hardware/storage/sd_reader/fat.c \
+ hardware/storage/sd_reader/byteordering.h \
+ hardware/storage/sd_reader/partition.h \
+ hardware/storage/sd_reader/sd_raw_config.h config.h autoconf.h pinning.c \
+ hardware/storage/sd_reader/partition_config.h \
+ hardware/storage/sd_reader/fat.h hardware/storage/sd_reader/fat_config.h \
+ hardware/storage/sd_reader/sd-reader_config.h core/debug.h core/global.h \
+ protocols/syslog/syslog_debug.h

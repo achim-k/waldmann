@@ -1,2 +1,2 @@
 protocols/waldmann/waldmann_ecmd.dep protocols/waldmann/waldmann_ecmd.o protocols/waldmann/waldmann_ecmd.E protocols/waldmann/waldmann_ecmd.s: protocols/waldmann/waldmann_ecmd.c \
- protocols/ecmd/ecmd-base.h
+ protocols/ecmd/ecmd-base.h config.h autoconf.h pinning.c

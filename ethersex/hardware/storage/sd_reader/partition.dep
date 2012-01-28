@@ -1,0 +1,6 @@
+hardware/storage/sd_reader/partition.dep hardware/storage/sd_reader/partition.o hardware/storage/sd_reader/partition.E hardware/storage/sd_reader/partition.s: hardware/storage/sd_reader/partition.c \
+ hardware/storage/sd_reader/byteordering.h \
+ hardware/storage/sd_reader/partition.h \
+ hardware/storage/sd_reader/sd_raw_config.h config.h autoconf.h pinning.c \
+ hardware/storage/sd_reader/partition_config.h \
+ hardware/storage/sd_reader/sd-reader_config.h

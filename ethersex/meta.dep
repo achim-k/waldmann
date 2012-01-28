@@ -18,6 +18,5 @@ meta.dep meta.o meta.E meta.s: meta.c config.h autoconf.h pinning.c core/debug.h
  protocols/usb/usbconfig.h pinning.c \
  protocols/usb/usbdrv/usbportability.h protocols/uip/uip_arp.h \
  protocols/uip/uip.h protocols/uip/ipv6.h core/periodic.h core/vfs/vfs.h \
- hardware/i2c/master/i2c_master.h hardware/onewire/onewire.h \
  protocols/uip/uip_router.h network.h protocols/ecmd/via_tcp/ecmd_net.h \
  services/httpd/httpd.h

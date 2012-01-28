@@ -1,0 +1,4 @@
+hardware/ir/irmp/irmp_ecmd.dep hardware/ir/irmp/irmp_ecmd.o hardware/ir/irmp/irmp_ecmd.E hardware/ir/irmp/irmp_ecmd.s: hardware/ir/irmp/irmp_ecmd.c config.h autoconf.h pinning.c \
+ core/bit-macros.h core/debug.h core/global.h \
+ protocols/syslog/syslog_debug.h hardware/ir/irmp/irmp.h \
+ protocols/ecmd/ecmd-base.h

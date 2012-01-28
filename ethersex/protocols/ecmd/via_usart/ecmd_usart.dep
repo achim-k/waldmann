@@ -1,0 +1,3 @@
+protocols/ecmd/via_usart/ecmd_usart.dep protocols/ecmd/via_usart/ecmd_usart.o protocols/ecmd/via_usart/ecmd_usart.E protocols/ecmd/via_usart/ecmd_usart.s: protocols/ecmd/via_usart/ecmd_usart.c config.h autoconf.h \
+ pinning.c protocols/ecmd/via_usart/ecmd_usart.h protocols/ecmd/parser.h \
+ protocols/ecmd/ecmd-base.h core/usart.h core/bit-macros.h core/setbaud.h

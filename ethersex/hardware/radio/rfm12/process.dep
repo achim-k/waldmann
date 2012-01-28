@@ -1,6 +1,6 @@
-services/clock/clock.dep services/clock/clock.o services/clock/clock.E services/clock/clock.s: services/clock/clock.c config.h autoconf.h pinning.c \
- services/ntp/ntp.h protocols/uip/uip.h protocols/uip/uipopt.h \
- protocols/uip/uip-conf.h meta.h core/pt/pt.h core/pt/lc.h \
+hardware/radio/rfm12/process.dep hardware/radio/rfm12/process.o hardware/radio/rfm12/process.E hardware/radio/rfm12/process.s: hardware/radio/rfm12/process.c config.h autoconf.h pinning.c \
+ protocols/uip/uip.h protocols/uip/uipopt.h protocols/uip/uip-conf.h \
+ protocols/uip/uip_multi.h meta.h core/pt/pt.h core/pt/lc.h \
  core/pt/lc-switch.h protocols/ecmd/via_tcp/ecmd_state.h \
  services/httpd/httpd_state.h core/vfs/vfs.h \
  hardware/storage/dataflash/vfs_df.h hardware/storage/dataflash/fs.h \
@@ -14,5 +14,6 @@ services/clock/clock.dep services/clock/clock.o services/clock/clock.E services/
  protocols/syslog/syslog_debug.h hardware/radio/rfm12/rfm12.h \
  protocols/zbus/zbus.h protocols/usb/usb_net.h \
  protocols/usb/usbdrv/usbdrv.h protocols/usb/usbconfig.h pinning.c \
- protocols/usb/usbdrv/usbportability.h core/periodic.h \
- services/clock/clock.h
+ protocols/usb/usbdrv/usbportability.h protocols/uip/uip_router.h \
+ core/spi.h hardware/radio/rfm12/rfm12_raw_net.h \
+ hardware/radio/rfm12/rfm12.h

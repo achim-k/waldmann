@@ -323,43 +323,6 @@
     #define _SPI2X0 SPI2X
 #endif
 /* port the enc28j60 is attached to */
-#define SOFT_SPI_MOSI_PORT D
-#define SOFT_SPI_MOSI_PIN 2
-#define HAVE_SOFT_SPI_MOSI 1
-
-
-
-#ifdef PD2_USED
-#  error Pinning Error: pinning/hardware/netio.m4:87: SOFT_SPI_MOSI has a double define on PD2
-#endif
-#define PD2_USED 1
-
-
-#define SOFT_SPI_MISO_PORT D
-#define SOFT_SPI_MISO_PIN 3
-#define HAVE_SOFT_SPI_MISO 1
-
-
-
-#ifdef PD3_USED
-#  error Pinning Error: pinning/hardware/netio.m4:88: SOFT_SPI_MISO has a double define on PD3
-#endif
-#define PD3_USED 1
-
-
-#define SOFT_SPI_SCK_PORT D
-#define SOFT_SPI_SCK_PIN 4
-#define HAVE_SOFT_SPI_SCK 1
-
-
-
-#ifdef PD4_USED
-#  error Pinning Error: pinning/hardware/netio.m4:89: SOFT_SPI_SCK has a double define on PD4
-#endif
-#define PD4_USED 1
-
-
-
 #define SPI_CS_NET_PORT SPI_CS_HARDWARE_PORT
 #define SPI_CS_NET_PIN SPI_CS_HARDWARE_PIN
 #define HAVE_SPI_CS_NET HAVE_SPI_CS_HARDWARE
@@ -396,7 +359,7 @@
 #define PORTIO_MASK_A 255
 #define PORTIO_MASK_B 15
 #define PORTIO_MASK_C 255
-#define PORTIO_MASK_D 227
+#define PORTIO_MASK_D 255
 #define PORTIO_MASK_E 255
 #define PORTIO_MASK_F 255
 #define PORTIO_MASK_G 255

@@ -1,0 +1,4 @@
+hardware/storage/sd_reader/sd_raw.dep hardware/storage/sd_reader/sd_raw.o hardware/storage/sd_reader/sd_raw.E hardware/storage/sd_reader/sd_raw.s: hardware/storage/sd_reader/sd_raw.c \
+ hardware/storage/sd_reader/sd_raw.h \
+ hardware/storage/sd_reader/sd_raw_config.h config.h autoconf.h pinning.c \
+ core/spi.h
