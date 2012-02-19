@@ -1,0 +1,18 @@
+Die erste Doku soll so ca. 5 Seiten umfassen
+
+Es soll folgendes enthalten sein:
+ Ein Konzept mit 1-2 Möglichkeiten für bestimmte Entscheidungen, die wir getroffen haben.
+ 1.	Hardwareauswahl
+ 2.	Wie die Oberfläche der App/Webserver gestaltet werden soll
+ 3.	Wie die Kommunikation gestaltet werden soll
+ Es soll grob wiedergeben, was bisher geleistet wurde.
+
+ Im 6. Semester soll eine technische Beschreibung folgen.
+
+
+FÜR DIE NÄCHSTE DOKU:
+
+SPI-Protokoll:
+ festlegen, zum Steuercontroller bzw. Android-App (SCPI?)
+ Von dir frei wählbar, muss allerdings noch net in die erste Doku m.M. nach
+
