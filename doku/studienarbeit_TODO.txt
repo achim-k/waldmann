@@ -1,18 +1,54 @@
 Die erste Doku soll so ca. 5 Seiten umfassen
 
 Es soll folgendes enthalten sein:
- Ein Konzept mit 1-2 M�glichkeiten f�r bestimmte Entscheidungen, die wir getroffen haben.
+ Ein Konzept mit 1-2 Möglichkeiten für bestimmte Entscheidungen, die wir getroffen haben.
  1.	Hardwareauswahl
- 2.	Wie die Oberfl�che der App/Webserver gestaltet werden soll
+ 2.	Wie die Oberfläche der App/Webserver gestaltet werden soll
  3.	Wie die Kommunikation gestaltet werden soll
  Es soll grob wiedergeben, was bisher geleistet wurde.
 
  Im 6. Semester soll eine technische Beschreibung folgen.
 
 
-F�R DIE N�CHSTE DOKU:
+FÜR DIE NÄCHSTE DOKU:
 
 SPI-Protokoll:
  festlegen, zum Steuercontroller bzw. Android-App (SCPI?)
- Von dir frei w�hlbar, muss allerdings noch net in die erste Doku m.M. nach
+ Von dir frei wählbar, muss allerdings noch net in die erste Doku m.M. nach
+
+
+Aufgabenstellung:
+
+Thema: Fernüberwachung eines Mikrokontrollers 
+
+Quellen: 
+	AVLFreaks
+	U. Radig
+	http://old.ethersex.de/index.php/Ethersex-Artikel
+	http://www.androidpit.de/de/android/wiki/view/Android_Anf%C3%A4nger_Workshop
+	http://www.ethersex.de
+	http://www.mikrocontroller.net/articles/AVR_Net-IO_Bausatz_von_Pollin
+	http://www.pollin.de/shop/dt/MTQ5OTgxOTk-/Bausaetze_Module/Bausaetze/Bausatz_AVR_NET_IO.html
+
+
+Beispielvorgehen:
+1.	Kontroller + AVR Architektur + Code verstehen 
+2.	Kontroller wählen und kaufen (40Pin)
+3.	TCP/IP Stack implementieren ? AVR Webserver
+4.	Android App: feste Felderanzahl, Messwerte sind irrelevant
+5.	Daten kommen von einem zweite Kontroller über SPI
+6.	Soll über das Internet ansprechbar sein (Auslesen und Schalter)
+7.	Schalter soll dargestellt werden, erst wenn auch umgeschaltet wurde soll die Stellung verändert werden
+
+Ziel der Dokumentation:
+	Ist eher für die Wartung ? Modulbeschreibung, Aufbau, usw.
+	Bedienungsanleitung
+	Installationsanleitung
+
+
+1	Datenverwaltung
+Wie die Daten geholt werden, ob Zwischenspeichern auf dem Controller und wann von dem andern Controller	ler geholt werden will. Nur bei Zugriff, oder mit Aktualisierungstaste.
+
+Bei Zugriff und wenn auf Aktualisierungs-Taste gedrückt wird.
+? Kein Zwischenspeichern auf dem Controller
 
