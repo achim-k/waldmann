@@ -1,4 +1,12 @@
-Voreingestellte IP: 192.168.0.170
+Voreingestellte IP: 192.168.0.174
+
+
+
+telnet 192.168.0.174 2701
 
 ECMD-Befehle per Konsole (TCP)
 - echo `echo 'hostname' | nc 192.168.0.174 2701`
+
+
+/////////////////////////////////////////////////
+SCPI
