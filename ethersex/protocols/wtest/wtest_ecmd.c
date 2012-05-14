@@ -23,6 +23,7 @@
 #include <stdio.h>
 #include <avr/pgmspace.h>				//Wegen PSTR
 #include "protocols/ecmd/ecmd-base.h"
+#include "protocols/syslog/syslog.h"
 
 #include "config.h"						//Wegen CONF_ENC_IP
 
@@ -37,6 +38,8 @@ int16_t parse_cmd_wtest(char *cmd, char *output, uint16_t len)
 	uint8_t ret = 0;
 	char param1[32];	//Festlegen der Array-Größe wichtig, sonst gehts nur bis ca. 5 Zeichen
 	ret = sscanf_P(cmd, PSTR("%s"), &param1);
+	syslog_sendf("ETHERSEX-SYSLOG: 'wtest' erhalten mit Befehl: %s", param1);
+
 	if (ret == 1)
 		return ECMD_FINAL(snprintf_P(output, len, PSTR("%s"), param1));
 	else

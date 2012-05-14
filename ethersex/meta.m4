@@ -31,6 +31,12 @@
   net_init(init_enc28j60)
   mainloop(network_process)
   timer(50, enc28j60_periodic())
+  header(protocols/syslog/syslog_net.h)
+  net_init(syslog_net_init)
+  header(protocols/syslog/syslog.h)
+  mainloop(syslog_flush)
+  header(protocols/syslog/syslog_debug.h)
+  init(syslog_debug_init)
   header(protocols/uip/uip.h)
   header(protocols/uip/uip_router.h)
   timer(10, ` 
@@ -71,6 +77,8 @@
 
   state_header(protocols/ecmd/via_tcp/ecmd_state.h)
   state_tcp(struct ecmd_connection_state_t ecmd)
+  header(protocols/ecmd/via_udp/uecmd_net.h)
+  net_init(uecmd_net_init)
   header(services/httpd/httpd.h)
   net_init(httpd_init)
 

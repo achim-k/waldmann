@@ -46,10 +46,14 @@ volatile uint8_t newtick;
 #include "core/periodic.h"
 #include "core/vfs/vfs.h"
 #include "hardware/ethernet/enc28j60.h"
+#include "protocols/syslog/syslog_net.h"
+#include "protocols/syslog/syslog.h"
+#include "protocols/syslog/syslog_debug.h"
 #include "protocols/uip/uip.h"
 #include "protocols/uip/uip_router.h"
 #include "protocols/uip/uip_arp.h"
 #include "protocols/ecmd/via_tcp/ecmd_net.h"
+#include "protocols/ecmd/via_udp/uecmd_net.h"
 #include "services/httpd/httpd.h"
 
 /* Function 0 follow */
@@ -375,6 +379,7 @@ ethersex_meta_init (void)
 
     network_init ();
     periodic_init ();
+    syslog_debug_init ();
 }  /* End of ethersex_meta_init. */
 
 void
@@ -386,7 +391,9 @@ ethersex_meta_netinit (void)
 #   endif
 
     init_enc28j60 ();
+    syslog_net_init ();
     ecmd_net_init ();
+    uecmd_net_init ();
     httpd_init ();
 } /* End of ethersex_meta_netinit. */
 
@@ -412,6 +419,7 @@ ethersex_meta_mainloop (void)
 {
 
     network_process (); wdt_kick ();
+    syslog_flush (); wdt_kick ();
     periodic_process(); wdt_kick();
 
 #ifdef FREQCOUNT_SUPPORT
