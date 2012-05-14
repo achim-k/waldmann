@@ -84,6 +84,7 @@ SUBDIRS += protocols/udpstella
 SUBDIRS += protocols/udpcurtain
 SUBDIRS += protocols/cw
 SUBDIRS += protocols/waldmann				#waldmann makefile aufnehmen
+SUBDIRS += protocols/wtest					#wtest makefile aufnehmen
 SUBDIRS += services/clock
 SUBDIRS += services/cron
 SUBDIRS += services/dyndns

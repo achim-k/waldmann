@@ -1,0 +1,2 @@
+protocols/wtest/wtest_ecmd.dep protocols/wtest/wtest_ecmd.o protocols/wtest/wtest_ecmd.E protocols/wtest/wtest_ecmd.s: protocols/wtest/wtest_ecmd.c protocols/ecmd/ecmd-base.h \
+ config.h autoconf.h pinning.c

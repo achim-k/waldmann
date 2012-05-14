@@ -564,7 +564,8 @@
 #undef  CW_PWM_FREQ_SUPPORT
 #undef  CW_RFM12_ASK_SUPPORT
 #undef  DEBUG_CW
-#define WALDMANN_SUPPORT 1
+#undef  WALDMANN_SUPPORT
+#define WTEST 1
 
 /*
  * Applications
