@@ -24,9 +24,9 @@
 #define VERSION_STRING_CHOICE USE_RELEASE_VERSION
 #define VERSION_GIT ""
 #undef  DEBUG_DISCARD_SOME
-#undef  DEBUG
+#define DEBUG 1
 #define DEBUG_BAUDRATE (115200)
-#undef  DEBUG_USE_SYSLOG
+#define DEBUG_USE_SYSLOG 1
 #undef  SOFT_UART_SUPPORT
 #undef  DEBUG_HOOK
 #undef  DEBUG_RESET_REASON
@@ -167,7 +167,7 @@
 #undef  IPCHAIR_SUPPORT
 #undef  IPCHAIR_MASQ
 #define TCP_SUPPORT 1
-#undef  UDP_SUPPORT
+#define UDP_SUPPORT 1
 #undef  BROADCAST_SUPPORT
 #define ICMP_SUPPORT 1
 #undef  DNS_SUPPORT
@@ -434,7 +434,8 @@
 #undef  ECMD_SERIAL_USART_SUPPORT
 #define ECMD_TCP_SUPPORT 1
 #define ECMD_TCP_PORT (2701)
-#undef  ECMD_UDP_SUPPORT
+#define ECMD_UDP_SUPPORT 1
+#define ECMD_UDP_PORT (2701)
 #undef  ECMD_SERIAL_I2C_SUPPORT
 #undef  ECMD_USB_SUPPORT
 #undef  ECMD_JABBER_SUPPORT
@@ -514,9 +515,9 @@
 #define CONF_SMS77_TYPE "basicplus"
 #undef  SMS77_EEPROM_SUPPORT
 #undef  DEBUG_SMS77
-#undef  SYSLOG_SUPPORT
-#define set_CONF_SYSLOG_SERVER(ip) uip_ipaddr((ip), 192,168,23,73 )
-#define CONF_SYSLOG_SERVER "192.168.23.73"
+#define SYSLOG_SUPPORT 1
+#define set_CONF_SYSLOG_SERVER(ip) uip_ipaddr((ip), 192,168,0,1 )
+#define CONF_SYSLOG_SERVER "192.168.0.1"
 #undef  TWITTER_SUPPORT
 #define CONF_TWITTER_SERVICE "identi.ca"
 #define CONF_TWITTER_API "/api"
@@ -564,7 +565,8 @@
 #undef  CW_PWM_FREQ_SUPPORT
 #undef  CW_RFM12_ASK_SUPPORT
 #undef  DEBUG_CW
-#define WALDMANN_SUPPORT 1
+#undef  WALDMANN_SUPPORT
+#define WTEST 1
 
 /*
  * Applications

@@ -46,10 +46,14 @@ volatile uint8_t newtick;
 #include "core/periodic.h"
 #include "core/vfs/vfs.h"
 #include "hardware/ethernet/enc28j60.h"
+#include "protocols/syslog/syslog_net.h"
+#include "protocols/syslog/syslog.h"
+#include "protocols/syslog/syslog_debug.h"
 #include "protocols/uip/uip.h"
 #include "protocols/uip/uip_router.h"
 #include "protocols/uip/uip_arp.h"
 #include "protocols/ecmd/via_tcp/ecmd_net.h"
+#include "protocols/ecmd/via_udp/uecmd_net.h"
 #include "services/httpd/httpd.h"
 
 /* Function 0 follow */
@@ -75,7 +79,7 @@ int16_t parse_cmd_ip (char *cmd, char *output, uint16_t len);
 int16_t parse_cmd_gw (char *cmd, char *output, uint16_t len);
 #endif
 #endif
-int16_t parse_cmd_wcmd (char *cmd, char *output, uint16_t len);
+int16_t parse_cmd_wtest (char *cmd, char *output, uint16_t len);
 #ifdef I2C_DETECT_SUPPORT
 int16_t parse_cmd_i2c_detect (char *cmd, char *output, uint16_t len);
 #endif
@@ -179,7 +183,7 @@ const char PROGMEM ecmd_ip_text[] = "ip";
 const char PROGMEM ecmd_gw_text[] = "gw";
 #endif
 #endif
-const char PROGMEM ecmd_wcmd_text[] = "wcmd";
+const char PROGMEM ecmd_wtest_text[] = "wtest";
 #ifdef I2C_DETECT_SUPPORT
 const char PROGMEM ecmd_i2c_detect_text[] = "i2c detect";
 #endif
@@ -284,7 +288,7 @@ const struct ecmd_command_t PROGMEM ecmd_cmds[] = {
 	{ ecmd_gw_text, parse_cmd_gw },
 #endif
 #endif
-	{ ecmd_wcmd_text, parse_cmd_wcmd },
+	{ ecmd_wtest_text, parse_cmd_wtest },
 #ifdef I2C_DETECT_SUPPORT
 	{ ecmd_i2c_detect_text, parse_cmd_i2c_detect },
 #endif
@@ -375,6 +379,7 @@ ethersex_meta_init (void)
 
     network_init ();
     periodic_init ();
+    syslog_debug_init ();
 }  /* End of ethersex_meta_init. */
 
 void
@@ -386,7 +391,9 @@ ethersex_meta_netinit (void)
 #   endif
 
     init_enc28j60 ();
+    syslog_net_init ();
     ecmd_net_init ();
+    uecmd_net_init ();
     httpd_init ();
 } /* End of ethersex_meta_netinit. */
 
@@ -412,6 +419,7 @@ ethersex_meta_mainloop (void)
 {
 
     network_process (); wdt_kick ();
+    syslog_flush (); wdt_kick ();
     periodic_process(); wdt_kick();
 
 #ifdef FREQCOUNT_SUPPORT
