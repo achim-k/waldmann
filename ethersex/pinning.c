@@ -323,6 +323,20 @@
     #define _SPI2X0 SPI2X
 #endif
 /* port the enc28j60 is attached to */
+#define SPI_CS_WALDMANN_PORT B
+#define SPI_CS_WALDMANN_PIN 1
+#define HAVE_SPI_CS_WALDMANN 1
+
+
+
+#ifdef PB1_USED
+#  error Pinning Error: pinning/hardware/Waldmann_Netio.m4:88: SPI_CS_WALDMANN has a double define on PB1
+#endif
+#define PB1_USED 1
+
+							 /* port the WALDMANN-Steuerungscontroller CS is attached to */
+
+/*
 #define SOFT_SPI_MOSI_PORT D
 #define SOFT_SPI_MOSI_PIN 2
 #define HAVE_SOFT_SPI_MOSI 1
@@ -330,7 +344,7 @@
 
 
 #ifdef PD2_USED
-#  error Pinning Error: pinning/hardware/netio.m4:87: SOFT_SPI_MOSI has a double define on PD2
+#  error Pinning Error: pinning/hardware/Waldmann_Netio.m4:91: SOFT_SPI_MOSI has a double define on PD2
 #endif
 #define PD2_USED 1
 
@@ -342,7 +356,7 @@
 
 
 #ifdef PD3_USED
-#  error Pinning Error: pinning/hardware/netio.m4:88: SOFT_SPI_MISO has a double define on PD3
+#  error Pinning Error: pinning/hardware/Waldmann_Netio.m4:92: SOFT_SPI_MISO has a double define on PD3
 #endif
 #define PD3_USED 1
 
@@ -354,18 +368,38 @@
 
 
 #ifdef PD4_USED
-#  error Pinning Error: pinning/hardware/netio.m4:89: SOFT_SPI_SCK has a double define on PD4
+#  error Pinning Error: pinning/hardware/Waldmann_Netio.m4:93: SOFT_SPI_SCK has a double define on PD4
 #endif
 #define PD4_USED 1
 
 
-
+*/
 #define SPI_CS_NET_PORT SPI_CS_HARDWARE_PORT
 #define SPI_CS_NET_PIN SPI_CS_HARDWARE_PIN
 #define HAVE_SPI_CS_NET HAVE_SPI_CS_HARDWARE
 
 
 
+
+
+
+  /* onewire port range */
+    /* onewire port range configuration: */
+  
+#ifdef PD6_USED
+#  error Pinning Error: pinning/hardware/Waldmann_Netio.m4:9: ONEWIRE has a double define on PD6_USED
+#endif
+#define PD6_USED 1
+
+
+
+
+#define ONEWIRE_BUSCOUNT 1
+#define ONEWIRE_STARTPIN 6
+#define ONEWIRE_PORT PORTD
+#define ONEWIRE_DDR DDRD
+#define ONEWIRE_PIN PIND
+#define ONEWIRE_BUSMASK 64U
 
 
 
@@ -394,17 +428,17 @@
 
 
 #define PORTIO_MASK_A 255
-#define PORTIO_MASK_B 15
+#define PORTIO_MASK_B 13
 #define PORTIO_MASK_C 255
-#define PORTIO_MASK_D 227
+#define PORTIO_MASK_D 163
 #define PORTIO_MASK_E 255
 #define PORTIO_MASK_F 255
 #define PORTIO_MASK_G 255
 
 #define DDR_MASK_A 0
-#define DDR_MASK_B 176
+#define DDR_MASK_B 178
 #define DDR_MASK_C 0
-#define DDR_MASK_D 0
+#define DDR_MASK_D 64
 #define DDR_MASK_E 0
 #define DDR_MASK_F 0
 #define DDR_MASK_G 0

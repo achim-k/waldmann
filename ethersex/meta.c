@@ -46,14 +46,13 @@ volatile uint8_t newtick;
 #include "core/periodic.h"
 #include "core/vfs/vfs.h"
 #include "hardware/ethernet/enc28j60.h"
+#include "hardware/onewire/onewire.h"
 #include "protocols/syslog/syslog_net.h"
 #include "protocols/syslog/syslog.h"
-#include "protocols/syslog/syslog_debug.h"
 #include "protocols/uip/uip.h"
 #include "protocols/uip/uip_router.h"
 #include "protocols/uip/uip_arp.h"
 #include "protocols/ecmd/via_tcp/ecmd_net.h"
-#include "protocols/ecmd/via_udp/uecmd_net.h"
 #include "services/httpd/httpd.h"
 
 /* Function 0 follow */
@@ -70,6 +69,11 @@ int16_t parse_cmd_mac (char *cmd, char *output, uint16_t len);
 #ifdef DEBUG_ENC28J60
 int16_t parse_cmd_enc_dump (char *cmd, char *output, uint16_t len);
 #endif
+#ifdef ONEWIRE_DETECT_SUPPORT
+int16_t parse_cmd_onewire_list (char *cmd, char *output, uint16_t len);
+#endif
+int16_t parse_cmd_onewire_get (char *cmd, char *output, uint16_t len);
+int16_t parse_cmd_onewire_convert (char *cmd, char *output, uint16_t len);
 #ifndef TEENSY_SUPPORT
 #ifdef UIP_SUPPORT
 #ifndef IPV6_SUPPORT
@@ -174,6 +178,11 @@ const char PROGMEM ecmd_mac_text[] = "mac";
 #ifdef DEBUG_ENC28J60
 const char PROGMEM ecmd_enc_dump_text[] = "enc dump";
 #endif
+#ifdef ONEWIRE_DETECT_SUPPORT
+const char PROGMEM ecmd_onewire_list_text[] = "1w list";
+#endif
+const char PROGMEM ecmd_onewire_get_text[] = "1w get";
+const char PROGMEM ecmd_onewire_convert_text[] = "1w convert";
 #ifndef TEENSY_SUPPORT
 #ifdef UIP_SUPPORT
 #ifndef IPV6_SUPPORT
@@ -279,6 +288,11 @@ const struct ecmd_command_t PROGMEM ecmd_cmds[] = {
 #ifdef DEBUG_ENC28J60
 	{ ecmd_enc_dump_text, parse_cmd_enc_dump },
 #endif
+#ifdef ONEWIRE_DETECT_SUPPORT
+	{ ecmd_onewire_list_text, parse_cmd_onewire_list },
+#endif
+	{ ecmd_onewire_get_text, parse_cmd_onewire_get },
+	{ ecmd_onewire_convert_text, parse_cmd_onewire_convert },
 #ifndef TEENSY_SUPPORT
 #ifdef UIP_SUPPORT
 #ifndef IPV6_SUPPORT
@@ -379,7 +393,7 @@ ethersex_meta_init (void)
 
     network_init ();
     periodic_init ();
-    syslog_debug_init ();
+    onewire_init ();
 }  /* End of ethersex_meta_init. */
 
 void
@@ -393,7 +407,6 @@ ethersex_meta_netinit (void)
     init_enc28j60 ();
     syslog_net_init ();
     ecmd_net_init ();
-    uecmd_net_init ();
     httpd_init ();
 } /* End of ethersex_meta_netinit. */
 

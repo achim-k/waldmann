@@ -31,12 +31,13 @@
   net_init(init_enc28j60)
   mainloop(network_process)
   timer(50, enc28j60_periodic())
+  header(hardware/onewire/onewire.h)
+  init(onewire_init)
+  ifdef(`conf_ONEWIRE_POLLING',`timer(40, ow_periodic())')
   header(protocols/syslog/syslog_net.h)
   net_init(syslog_net_init)
   header(protocols/syslog/syslog.h)
   mainloop(syslog_flush)
-  header(protocols/syslog/syslog_debug.h)
-  init(syslog_debug_init)
   header(protocols/uip/uip.h)
   header(protocols/uip/uip_router.h)
   timer(10, ` 
@@ -77,8 +78,6 @@
 
   state_header(protocols/ecmd/via_tcp/ecmd_state.h)
   state_tcp(struct ecmd_connection_state_t ecmd)
-  header(protocols/ecmd/via_udp/uecmd_net.h)
-  net_init(uecmd_net_init)
   header(services/httpd/httpd.h)
   net_init(httpd_init)
 
@@ -93,6 +92,12 @@
     ecmd_feature(enc_dump, "enc dump", , Dump the internal state of the enc to serial)
   ecmd_endif()
     
+  block([[Dallas_1-wire_Bus]])
+  ecmd_ifdef(ONEWIRE_DETECT_SUPPORT)
+    ecmd_feature(onewire_list, "1w list",,Return a list of the connected onewire devices)
+  ecmd_endif()
+  ecmd_feature(onewire_get, "1w get", DEVICE, Return temperature value of onewire DEVICE (provide 64-bit ID as 16-hex-digits))
+  ecmd_feature(onewire_convert, "1w convert", [DEVICE], Trigger temperature conversion of either DEVICE or all connected devices)
   block(Network configuration)
   ecmd_ifndef(TEENSY_SUPPORT)
     ecmd_ifdef(UIP_SUPPORT)

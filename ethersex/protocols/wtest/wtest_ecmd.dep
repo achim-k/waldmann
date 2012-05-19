@@ -16,4 +16,4 @@ protocols/wtest/wtest_ecmd.dep protocols/wtest/wtest_ecmd.o protocols/wtest/wtes
  hardware/radio/rfm12/rfm12.h protocols/zbus/zbus.h \
  protocols/usb/usb_net.h protocols/usb/usbdrv/usbdrv.h \
  protocols/usb/usbconfig.h pinning.c \
- protocols/usb/usbdrv/usbportability.h
+ protocols/usb/usbdrv/usbportability.h core/spi.h

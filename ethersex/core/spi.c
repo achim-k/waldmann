@@ -26,7 +26,7 @@
 #include "config.h"
 
 #if defined(RFM12_SUPPORT) || defined(ENC28J60_SUPPORT) \
-  || defined(DATAFLASH_SUPPORT) || defined(SD_READER_SUPPORT)
+  || defined(DATAFLASH_SUPPORT) || defined(SD_READER_SUPPORT) || defined(WTEST)	//HIER !!!!!!!!!!
 
 void spi_init(void)
 {
@@ -35,6 +35,9 @@ void spi_init(void)
    */
 
   /* Set the chip-selects as high */
+#ifdef WTEST								//HIER !!!!!!
+    PIN_SET(SPI_CS_WALDMANN);
+#endif
 
 #ifdef ENC28J60_SUPPORT
     PIN_SET(SPI_CS_NET);
