@@ -20,31 +20,65 @@
 * http://www.gnu.org/copyleft/gpl.html
 */
 
+
 #include <stdio.h>
 #include <avr/pgmspace.h>				//Wegen PSTR
+#include <util/delay.h>
 #include "protocols/ecmd/ecmd-base.h"
 #include "protocols/syslog/syslog.h"
+#include "core/spi.h"
 
-#include "config.h"						//Wegen CONF_ENC_IP
+#  define cs_low()  PIN_CLEAR(SPI_CS_WALDMANN)
+#  define cs_high() PIN_SET(SPI_CS_WALDMANN)
+
+
+void talk_to_waldmann(char *befehl, char *returnArray, uint8_t returnSize)
+{
+	uint8_t counter = 0;
+
+	cs_low();	 // aquire device (logisch-0-aktiv)
+
+	//Befehl senden:
+	while(befehl[counter] != '\0')
+	{
+		spi_send((uint8_t)befehl[counter]);
+		counter++;
+	}
+
+	//Steuercontroller Zeit zum Verarbeiten des Befehls geben:
+	_delay_ms(50);
+
+	//Antwort des Steuercontrollers einlesen:
+	for(counter=0;counter<returnSize;counter++)
+		returnArray[counter] = (char)spi_send(0);
+
+	returnArray[returnSize-1] = '\0';	//Stringende am Ende des Arrays setzen
+
+	cs_high();	// release device
+}
+
+
 
 int16_t parse_cmd_wtest(char *cmd, char *output, uint16_t len)
 {
-	//return ECMD_FINAL(snprintf_P(output, len, PSTR("TEST_ANTWORT"))); 	//Funzt so
-
-//	char StringImFlash[] = "SACKSACK";
-//	return ECMD_FINAL(snprintf_P(output, len, PSTR("%s"),StringImFlash));	//Funzt au so
-
-
 	uint8_t ret = 0;
-	char param1[32];	//Festlegen der Array-Größe wichtig, sonst gehts nur bis ca. 5 Zeichen
+	uint8_t spi_data = 0;
+	char param1[32];	// Festlegen der Array-Größe wichtig, sonst gehts nur bis ca. 5 Zeichen
+	char result[32];
+
+	//Einlesen des wtest-Parameters (als String)
 	ret = sscanf_P(cmd, PSTR("%s"), &param1);
-	syslog_sendf("ETHERSEX-SYSLOG: 'wtest' erhalten mit Befehl: %s", param1);
+
+	syslog_sendf("ECMD 'wtest' erhalten, Parameter: %s", param1);
+
+	talk_to_waldmann(param1,result,32);
+
+	syslog_sendf("Rückgabewert vom Stuercontroller: %s", result);
 
 	if (ret == 1)
-		return ECMD_FINAL(snprintf_P(output, len, PSTR("%s"), param1));
+		return ECMD_FINAL(snprintf_P(output, len, PSTR("%s"), result));
 	else
 		return ECMD_ERR_PARSE_ERROR;
-
 }
 
 /*

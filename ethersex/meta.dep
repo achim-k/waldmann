@@ -18,7 +18,6 @@ meta.dep meta.o meta.E meta.s: meta.c config.h autoconf.h pinning.c core/debug.h
  protocols/usb/usbconfig.h pinning.c \
  protocols/usb/usbdrv/usbportability.h protocols/uip/uip_arp.h \
  protocols/uip/uip.h protocols/uip/ipv6.h core/periodic.h core/vfs/vfs.h \
- protocols/syslog/syslog_net.h protocols/syslog/syslog.h \
- protocols/syslog/syslog_debug.h protocols/uip/uip_router.h network.h \
- protocols/ecmd/via_tcp/ecmd_net.h protocols/ecmd/via_udp/uecmd_net.h \
- services/httpd/httpd.h
+ hardware/onewire/onewire.h protocols/syslog/syslog_net.h \
+ protocols/syslog/syslog.h protocols/uip/uip_router.h network.h \
+ protocols/ecmd/via_tcp/ecmd_net.h services/httpd/httpd.h
