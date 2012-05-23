@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/tabhost"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <LinearLayout
+                android:id="@+id/layoutTab1"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
+
+                <ScrollView
+                    android:id="@+id/scrollView1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout2"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:orientation="vertical" >
+
+                        <Button
+                            android:id="@+id/button1"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:hapticFeedbackEnabled="true"
+                            android:minLines="2"
+                            android:text="@string/button1" />
+
+                        <TextView
+                            android:id="@+id/textView1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </ScrollView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutTab2"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
+
+                <ScrollView
+                    android:id="@+id/scrollView2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout3"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:orientation="vertical" >
+
+                        <Button
+                            android:id="@+id/button2"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:hapticFeedbackEnabled="true"
+                            android:minLines="2"
+                            android:text="@string/button2" />
+
+                        <TableLayout
+                            android:id="@+id/tableLayout1"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content" >
+
+                            <TableRow
+                                android:id="@+id/tableRow1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" >
+
+                                <ToggleButton
+                                    android:id="@+id/toggleButton01"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:onClick="checkTB01"
+                                    android:text="ToggleButton" />
+
+                                <TextView
+                                    android:id="@+id/textView2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:text="@string/schalter01"
+                                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                            </TableRow>
+
+                            <TableRow
+                                android:id="@+id/tableRow2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" >
+
+                                <ToggleButton
+                                    android:id="@+id/toggleButton02"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:onClick="checkTB02"
+                                    android:text="ToggleButton" />
+
+                                <TextView
+                                    android:id="@+id/textView3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:text="@string/schalter02"
+                                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                            </TableRow>
+
+                            <TableRow
+                                android:id="@+id/tableRow3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" >
+
+                                <ToggleButton
+                                    android:id="@+id/toggleButton03"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:onClick="checkTB03"
+                                    android:text="ToggleButton" />
+
+                                <TextView
+                                    android:id="@+id/textView4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:text="@string/schalter03"
+                                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                            </TableRow>
+
+                            <TableRow
+                                android:id="@+id/tableRow4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" >
+
+                                <ToggleButton
+                                    android:id="@+id/toggleButton04"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:onClick="checkTB04"
+                                    android:text="ToggleButton" />
+
+                                <TextView
+                                    android:id="@+id/textView5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:text="@string/schalter04"
+                                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                            </TableRow>
+
+                            <TableRow
+                                android:id="@+id/tableRow5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" >
+
+                                <ToggleButton
+                                    android:id="@+id/toggleButton05"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:onClick="checkTB05"
+                                    android:text="ToggleButton" />
+
+                                <TextView
+                                    android:id="@+id/textView6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:text="@string/schalter05"
+                                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                            </TableRow>
+
+                            <TableRow
+                                android:id="@+id/tableRow6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" >
+
+                                <ToggleButton
+                                    android:id="@+id/toggleButton06"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:onClick="checkTB06"
+                                    android:text="ToggleButton" />
+
+                                <TextView
+                                    android:id="@+id/textView7"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:text="@string/schalter06"
+                                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                            </TableRow>
+
+                            <TableRow
+                                android:id="@+id/tableRow7"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" >
+
+                                <ToggleButton
+                                    android:id="@+id/toggleButton07"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:onClick="checkTB07"
+                                    android:text="ToggleButton" />
+
+                                <TextView
+                                    android:id="@+id/textView8"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:text="@string/schalter07"
+                                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                            </TableRow>
+
+                            <TableRow
+                                android:id="@+id/tableRow8"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" >
+
+                                <ToggleButton
+                                    android:id="@+id/toggleButton08"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:onClick="checkTB08"
+                                    android:text="ToggleButton" />
+
+                                <TextView
+                                    android:id="@+id/textView9"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:text="@string/schalter08"
+                                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                            </TableRow>
+                        </TableLayout>
+                    </LinearLayout>
+                </ScrollView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutTab3"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minLines="3"
+                    android:text="@string/autoren"
+                    android:textSize="15dp" >
+                </TextView>
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minLines="3"
+                    android:text="@string/betreuer"
+                    android:textSize="15dp" >
+                </TextView>
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
+
+</TabHost>

@@ -66,16 +66,8 @@ public class DataActivity extends Activity {
 
 			rtrnStr = readStream.readLine();
 
-			// Abgrenzen von 20 Zeichen - BEGIN
-
-			StringBuffer feldStr = new StringBuffer("");
-			
-			for (int i = 1; ( (30 * i) <= rtrnStr.length() && i <= 20 ); ++i) {
-				feldStr.append( rtrnStr.substring( 30*(i-1), 30*i ) ).append("\n");
-			}
-			// Abgrenzen von 20 Zeichen - END
-
-			log.setText(feldStr.toString());
+			// Stringverarbeitung um 30x20 Feld zu erstellen
+			log.setText(cutString().toString());
 			Toast.makeText(this, "aktualisiert", Toast.LENGTH_LONG).show();
 
 			tcpSocket.close();
@@ -84,5 +76,29 @@ public class DataActivity extends Activity {
 			e1.printStackTrace();
 			Toast.makeText(this, e1.getMessage(), Toast.LENGTH_LONG).show();
 		}
+	}
+	
+	StringBuffer cutString() {
+		// Abgrenzen von 20 Zeichen - BEGIN
+		StringBuffer feldStr = new StringBuffer("");
+
+		// wenn die Antwort 30 oder mehr Zeichen hat wird ein newline nach 30 zeichen eingefuegt
+		if (rtrnStr.length() >= 30) {
+			int i = 1;
+			for (; ((30 * i) <= rtrnStr.length() && i <= 20); ++i) {
+				feldStr.append(rtrnStr.substring(30 * (i - 1), 30 * i))
+						.append("\n");
+			}
+			if (i <= 20)
+				// wenn die Anzahl der Zeichen kein Teiler von 30 ist
+				feldStr.append(rtrnStr.substring(30 * (i - 1),
+						rtrnStr.length()));
+		} else {
+			// falls die Anzahl von Zeichen unter 30 ist
+			feldStr.append(rtrnStr);
+		}
+		
+		return feldStr;
+		// Abgrenzen von 20 Zeichen - END
 	}
 }

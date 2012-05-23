@@ -23,29 +23,29 @@ public class ThreeTabs extends TabActivity {
 		TabHost tabHost = getTabHost();
 
 		// Create an Intent to launch an Activity for the tab
-		Intent intent1 = new Intent().setClass(this, DataActivity.class);
+		Intent intent = new Intent().setClass(this, DataActivity.class);
 		// Initialize a TabSpec for each tab and add it to the TabHost
 		TabHost.TabSpec spec1 = tabHost
 				.newTabSpec("messwerte")
 				.setIndicator("Messwerte",
 						res.getDrawable(R.drawable.ic_tab_artists))
-				.setContent(intent1);
+				.setContent(intent);
 		tabHost.addTab(spec1);
 
-		Intent intent2 = new Intent().setClass(this, SwitchesActivity.class);
+		intent = new Intent().setClass(this, SwitchesActivity.class);
 		TabHost.TabSpec spec2 = tabHost
 				.newTabSpec("schalter")
 				.setIndicator("Schalter",
 						res.getDrawable(R.drawable.ic_tab_albums))
-				.setContent(intent2);
+				.setContent(intent);
 		tabHost.addTab(spec2);
 
-		Intent intent3 = new Intent().setClass(this, ImpressumActivity.class);
+		intent = new Intent().setClass(this, ImpressumActivity.class);
 		TabHost.TabSpec spec3 = tabHost
 				.newTabSpec("impressum")
 				.setIndicator("Impressum",
 						res.getDrawable(R.drawable.ic_tab_songs))
-				.setContent(intent3);
+				.setContent(intent);
 		tabHost.addTab(spec3);
 
 		tabHost.setCurrentTab(0);
