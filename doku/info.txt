@@ -9,4 +9,23 @@ ECMD-Befehle per Konsole (TCP)
 
 
 /////////////////////////////////////////////////
-SCPI
+telnet 192.168.0.174 2701
+
+
+/////////////////////////////////////////////////
+SCPI-Befehle
+
+"MEASurment"
+Gibt die Messwerte über 20 Zeilen mit 30 Zeichen pro Zeile aus.
+
+"SWitch1 ON"
+Stellt Schalter 1 auf EIN.
+
+"SWitch1 OFF"
+Stellt Schalter 1 auf AUS.
+
+"SWitch1?"
+Fragt Status des Schalters ab.
+
+"SWitches?"
+Fragt Status aller Schalter ab.
