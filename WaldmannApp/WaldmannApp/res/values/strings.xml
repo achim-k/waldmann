@@ -2,9 +2,12 @@
 <resources>
     <string name="app_name">Projekt AVR-Webserver</string>
     
+    <string name="messwerte">Messwerte</string>
     <string name="button1">aktualisieren</string>
+    <string name="aktualisiert">aktualisiert</string>
         
-        <string name="button2">Zustände abfragen</string>
+    <string name="schalter">Schalter</string>
+    <string name="button2">Zustände abfragen</string>
     <string name="schalter01">Schalter 1</string>
     <string name="schalter02">Schalter 2</string>
     <string name="schalter03">Schalter 3</string>
@@ -14,12 +17,14 @@
     <string name="schalter07">Schalter 7</string>
     <string name="schalter08">Schalter 8</string>
         
-
+    <string name="impressum">Impressum</string>
     <string name="autoren">Autoren: Hans-Joachim Krauch und Waldemar Siebert</string>
     <string name="betreuer">Betreuer: Klaus Hartmann</string>
 
     <string name="einstellungen">Einstellungen</string>
     <string name="address">Adresse des AVR eingeben</string>
     <string name="verbinden">verbinden!</string>
+    <string name="ok">OK</string>
+    <string name="abbrechen">Abbrechen</string>
     
 </resources>
