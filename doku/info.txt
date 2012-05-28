@@ -13,19 +13,21 @@ telnet 192.168.0.174 2701
 
 
 /////////////////////////////////////////////////
-SCPI-Befehle
+Pseudo-SCPI-Befehle
 
-"MEASurment"
-Gibt die Messwerte über 20 Zeilen mit 30 Zeichen pro Zeile aus.
+X = 1..20; Y = 1..8
 
-"SWitch1 ON"
-Stellt Schalter 1 auf EIN.
+Messsourcen-CMDs:				Antwort (bsp):
+"SOURCE:NAME? (@X)"				"Tempfuehler"
+"SOURCE:VALUE? (@X)"				"24.2"	
+"SOURCE:UNIT? (@X)"				"°C"
 
-"SWitch1 OFF"
-Stellt Schalter 1 auf AUS.
+Schalter:
+"SWITCH:NAME? (@Y)"				"Switchxy"
+"SWITCH:VALUE? (@Y)"				1 (= AN) | 0 (=Aus)
+"SWITCH:ON (@Y)"				keine Antwort!
+"SWITCH:OFF (@Y)"				keine Antwort!
 
-"SWitch1?"
-Fragt Status des Schalters ab.
-
-"SWitches?"
-Fragt Status aller Schalter ab.
+Neue Werte/Namen vorhanden:
+"*STB?"							0x01 (Wenn neue Werte vorhanden) | 0x10 (neue Name vorhanden) | 0x11 (beides) | 0x00 wenn nix
+"*CLS"							keine Antwort! Löscht Statusbyte			
