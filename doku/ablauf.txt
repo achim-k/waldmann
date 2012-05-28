@@ -1,0 +1,21 @@
+machen 8 Schalter und 12 Messsourcen
+
+für Messsourcen gibts 3 SCPI-cmds:
+getName(@X)?
+getValue(@X)?
+getUnit(@X)?
+
+werden von der App beim Start aufgerufen
+danach nur noch getValue um nur die werte zu aktuallisieren.
+
+12 Zeilen repräsentieren die 12 Messsourcen.
+
+Messsourcen:
+"SOURCE:NAME? (@X)"
+"SOURCE:VALU? (@X)"
+"SOURCE:UNIT? (@X)"
+
+Schalter:
+"SWITCH:NAME? (@X)"
+"SWITCH:VALU? (@X)"
+"SWITCH:ON/OFF (@X)"
