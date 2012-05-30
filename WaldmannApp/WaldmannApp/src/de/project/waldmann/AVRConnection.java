@@ -9,6 +9,8 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class AVRConnection {
+	
+	private static AVRConnection instance = null;
 
 	// TCP Verbindungskomponenten
 	
@@ -18,6 +20,17 @@ public class AVRConnection {
 	DataOutputStream writeStream;
 	BufferedReader readStream;
 	InetAddress avrIp;
+	
+	private AVRConnection() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public static AVRConnection getInstance() {
+		if(instance == null) {
+			instance = new AVRConnection();
+		}
+		return instance;
+	}
 
 	// verbinden
 	public void connect(String avrIpStr, int port) throws UnknownHostException, IOException {
@@ -50,9 +63,11 @@ public class AVRConnection {
 		// Stringverarbeitung, um 30x20 Feld zu erstellen
 		rtrnMsg = cutString().toString();
 		
-		return rtrnMsg;
-
+		writeStream.close();
+		readStream.close();
 		
+		return rtrnMsg;
+	
 	}
 
 	private StringBuffer cutString() {
@@ -78,6 +93,5 @@ public class AVRConnection {
 		return feldStr;
 		// Abgrenzen von 20 Zeichen - END
 	}
-
 
 }

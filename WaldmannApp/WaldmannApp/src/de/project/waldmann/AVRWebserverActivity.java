@@ -1,15 +1,19 @@
 package de.project.waldmann;
 
+import java.io.IOException;
+import java.net.UnknownHostException;
+
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.LocalActivityManager;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.text.Editable;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +26,9 @@ public class AVRWebserverActivity extends Activity {
 
 	// cut String
 	String rtrnStr;
+	static AVRConnection avrConn;
+	static String ipStr;
+	
 
 	// ToggleButtons des SwitchTab
 	ToggleButton buttonOnOff01;
@@ -32,7 +39,7 @@ public class AVRWebserverActivity extends Activity {
 	ToggleButton buttonOnOff06;
 	ToggleButton buttonOnOff07;
 	ToggleButton buttonOnOff08;
-
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 
@@ -74,7 +81,6 @@ public class AVRWebserverActivity extends Activity {
 		tabHost.setCurrentTabByTag("messwerte");
 
 		// logik des messwerteTab
-
 		init();
 
 	}
@@ -93,6 +99,33 @@ public class AVRWebserverActivity extends Activity {
 		mlam.dispatchPause(isFinishing());
 	}
 
+	@Override
+	protected void onRestart() {
+		// TODO Auto-generated method stub
+		super.onRestart();
+		try {
+			avrConn.connect(ipStr, 2701);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		try {
+			avrConn.disconnect();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	// MesswertTab - BEGIN
 	void init() {
 
@@ -114,29 +147,57 @@ public class AVRWebserverActivity extends Activity {
 				updateSwitches();
 			}
 		});
+		
+		
+		// Eingabe der AVR-Serveraddresse
+		final EditText inputAddress = new EditText(this);
+		
+		@SuppressWarnings("unused")
+		AlertDialog setAVRaddress = new AlertDialog.Builder(this)
+		.setTitle(R.string.einstellungen)
+		.setMessage(R.string.address)
+		.setView(inputAddress)
+		.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				Editable value = inputAddress.getText();
+				ipStr = value.toString();
+				try {
+					avrConn = AVRConnection.getInstance();
+					avrConn.connect(ipStr, 2701);
+				} catch (UnknownHostException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				// Einstellung zu Addressverarbeitung!
+			}
+		}).setNegativeButton(R.string.abbrechen, new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+			}
+		}).show();
 
 	}
 
 	void updateData() {
 		TextView log = (TextView) findViewById(R.id.textView1);
-		log.setText("connecting to AVR...");
 
 		try {
 
-			AVRConnection avrConn = new AVRConnection();
+			//avrConn = new AVRConnection();
 
 			// avrConn.connect("192.168.0.174", 2701);
 			// 10.0.2.2 ist der Localhost des PC auf dem das virt.Device laeuft
-			avrConn.connect("10.0.2.2", 8001);
+			//avrConn.connect("10.0.2.2", 8001);
 
 			// SCPI BEFEHL!!! - BEGIN
 			rtrnStr = avrConn.sendMsg("hostname");
 			// SCPI BEFEHL!!! - END
 
 			log.setText(rtrnStr);
-			Toast.makeText(this, "aktualisiert", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, R.string.aktualisiert, Toast.LENGTH_LONG).show();
 
-			avrConn.disconnect();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -183,7 +244,7 @@ public class AVRWebserverActivity extends Activity {
 
 			// Stringverarbeitung um 30x20 Feld zu erstellen
 
-			Toast.makeText(this, "aktualisiert", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, R.string.aktualisiert, Toast.LENGTH_LONG).show();
 
 			// avrConn.disconnect();
 
@@ -195,7 +256,6 @@ public class AVRWebserverActivity extends Activity {
 	}
 
 	public void checkTB01(View v) {
-		
 
 		if (((ToggleButton) v).isChecked()) {
 			Toast.makeText(this, "TB1 on", Toast.LENGTH_SHORT).show();
@@ -277,29 +337,4 @@ public class AVRWebserverActivity extends Activity {
 
 	// SchalterTab - END
 
-	// Menu - BEGIN
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.menu, menu);
-		Toast.makeText(this, "Menü", Toast.LENGTH_LONG).show();
-
-		return super.onCreateOptionsMenu(menu);
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle item selection
-		switch (item.getItemId()) {
-		case R.menu.menu:
-			// TCPSocket einstellungen
-
-			return true;
-
-		default:
-			return super.onOptionsItemSelected(item);
-		}
-	}
-
-	// Menu - END
 }
