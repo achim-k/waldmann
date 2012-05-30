@@ -16,7 +16,7 @@ telnet 192.168.0.174 2701
 Pseudo-SCPI-Befehle
 
 X = 1..20; Y = 1..8
-!!!!!!!!!!!!!KEINE LEERZEICHEN!!!!!!!!!!!!! Sonst wird das zumindest über Konsole, als zweites Wtest-Argument angesehen
+!!!!!!!!!!!!!KEINE LEERZEICHEN!!!!!!!!!!!!! Sonst wird das zumindest über Konsole, als weiteres Argument angesehen
 Messsourcen-CMDs:				Antwort (bsp):
 "SOURCE:NAME?(@X)"				"Tempfuehler"
 "SOURCE:VALUE?(@X)"			"24.2"	

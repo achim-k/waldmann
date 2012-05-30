@@ -87,41 +87,34 @@ public class AVRWebserverActivity extends Activity {
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		mlam.dispatchResume();
 	}
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 		mlam.dispatchPause(isFinishing());
 	}
 
 	@Override
 	protected void onRestart() {
-		// TODO Auto-generated method stub
 		super.onRestart();
 		try {
 			avrConn.connect(ipStr, 2701);
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	@Override
 	protected void onStop() {
-		// TODO Auto-generated method stub
 		super.onStop();
 		try {
 			avrConn.disconnect();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -151,13 +144,14 @@ public class AVRWebserverActivity extends Activity {
 		
 		// Eingabe der AVR-Serveraddresse
 		final EditText inputAddress = new EditText(this);
+		inputAddress.setText("192.168.0.174");
 		
 		@SuppressWarnings("unused")
 		AlertDialog setAVRaddress = new AlertDialog.Builder(this)
 		.setTitle(R.string.einstellungen)
 		.setMessage(R.string.address)
 		.setView(inputAddress)
-		.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+		.setNegativeButton(R.string.ok, new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				Editable value = inputAddress.getText();
@@ -170,23 +164,17 @@ public class AVRWebserverActivity extends Activity {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				// Einstellung zu Addressverarbeitung!
-			}
-		}).setNegativeButton(R.string.abbrechen, new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
 			}
 		}).show();
+		// Einstellung zu Addressverarbeitung!
 
 	}
 
 	void updateData() {
-		TextView log = (TextView) findViewById(R.id.textView1);
+		// TODO: muss nun für alle 20 geschehen!!!
+		TextView log = (TextView) findViewById(R.id.textView01);
 
 		try {
-
-			//avrConn = new AVRConnection();
-
 			// avrConn.connect("192.168.0.174", 2701);
 			// 10.0.2.2 ist der Localhost des PC auf dem das virt.Device laeuft
 			//avrConn.connect("10.0.2.2", 8001);
@@ -196,12 +184,17 @@ public class AVRWebserverActivity extends Activity {
 			// SCPI BEFEHL!!! - END
 
 			log.setText(rtrnStr);
-			Toast.makeText(this, R.string.aktualisiert, Toast.LENGTH_LONG).show();
-
-
+			
+			// Zeile 2
+			log = (TextView) findViewById(R.id.TextView02);
+			log.setText(avrConn.sendMsg(""));
+			
+			
+			Toast.makeText(this, R.string.aktualisiert, Toast.LENGTH_SHORT).show();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
-			Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+			Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
 		}
 	}
 
@@ -244,13 +237,13 @@ public class AVRWebserverActivity extends Activity {
 
 			// Stringverarbeitung um 30x20 Feld zu erstellen
 
-			Toast.makeText(this, R.string.aktualisiert, Toast.LENGTH_LONG).show();
+			Toast.makeText(this, R.string.aktualisiert, Toast.LENGTH_SHORT).show();
 
 			// avrConn.disconnect();
 
 		} catch (Exception e1) {
 			e1.printStackTrace();
-			Toast.makeText(this, e1.getMessage(), Toast.LENGTH_LONG).show();
+			Toast.makeText(this, e1.getMessage(), Toast.LENGTH_SHORT).show();
 		}
 
 	}

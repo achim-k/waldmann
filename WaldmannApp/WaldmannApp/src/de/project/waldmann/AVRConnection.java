@@ -16,7 +16,7 @@ public class AVRConnection {
 	
 	// String message;
 	String rtrnMsg;
-	Socket tcpSocket;
+	static Socket tcpSocket;
 	DataOutputStream writeStream;
 	BufferedReader readStream;
 	InetAddress avrIp;
@@ -37,39 +37,39 @@ public class AVRConnection {
 		avrIp = InetAddress.getByName(avrIpStr);
 
 		tcpSocket = new Socket(avrIp, port);
-
-	}
-
-	// trennen
-	public void disconnect() throws IOException {
-		tcpSocket.close();
-	}
-
-	public String sendMsg(String msg) throws IOException {
+		
 
 		writeStream = new DataOutputStream(tcpSocket.getOutputStream());
 		readStream = new BufferedReader(new InputStreamReader(
 				tcpSocket.getInputStream()));
 
-		// SCPI BEFEHL!!! - BEGIN
-		// msg = "hostname";
-		// SCPI BEFEHL!!! - END
+
+	}
+
+	// trennen
+	public void disconnect() throws IOException {
+		
+		writeStream.close();
+		readStream.close();
+
+		tcpSocket.close();
+	}
+
+	public String sendMsg(String msg) throws IOException {
 
 		writeStream.writeBytes(msg + '\n');
 		writeStream.flush();
 
 		rtrnMsg = readStream.readLine();
 		
-		// Stringverarbeitung, um 30x20 Feld zu erstellen
-		rtrnMsg = cutString().toString();
-		
-		writeStream.close();
-		readStream.close();
+		//rtrnMsg = cutString().toString();
 		
 		return rtrnMsg;
 	
 	}
 
+/*
+ *  //Stringverarbeitung, um 30x20 Feld zu erstellen
 	private StringBuffer cutString() {
 		// Abgrenzen von 20 Zeichen - BEGIN
 		StringBuffer feldStr = new StringBuffer("");
@@ -93,5 +93,6 @@ public class AVRConnection {
 		return feldStr;
 		// Abgrenzen von 20 Zeichen - END
 	}
+*/
 
 }
