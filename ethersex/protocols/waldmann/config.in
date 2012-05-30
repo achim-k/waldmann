@@ -1,2 +1,2 @@
-dep_bool_menu "Waldmann" WALDMANN_SUPPORT $TCP_SUPPORT
+dep_bool_menu "Waldmann" WALDMANN $TCP_SUPPORT
 endmenu

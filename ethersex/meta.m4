@@ -109,5 +109,5 @@
       ecmd_feature(gw, "gw",[IP],Display/Set the address of the default router.)
     ecmd_endif()
   ecmd_endif()
-block(WTEST)
-ecmd_feature(wtest, "wtest",param1, wtest-description)
+block(WALDMANN)
+ecmd_feature(wcmd, "wcmd",param1, wcmd-description)

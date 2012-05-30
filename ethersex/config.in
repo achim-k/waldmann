@@ -404,7 +404,6 @@ source protocols/udpIO/config.in
 source protocols/udpcurtain/config.in
 source protocols/cw/config.in
 source protocols/waldmann/config.in 	#Waldmann im menuconfig menu auswählbar
-source protocols/wtest/config.in 		#wtest im menuconfig menu auswählbar
 endmenu
 
 ###############################################################################

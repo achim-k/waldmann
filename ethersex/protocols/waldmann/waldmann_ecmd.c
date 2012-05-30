@@ -21,55 +21,79 @@
 */
 
 
+#include <stdio.h>
 #include <avr/pgmspace.h>				//Wegen PSTR
 #include "protocols/ecmd/ecmd-base.h"
+#include "protocols/syslog/syslog.h"
+#include "core/spi.h"
 
-#ifndef SOFT_SPI_SUPPORT
-	#include "config.h"
-	#include <avr/io.h>
-#endif
+#define cs_low()  PIN_CLEAR(SPI_CS_WALDMANN)
+#define cs_high() PIN_SET(SPI_CS_WALDMANN)
 
-uint8_t
-soft_spi_send(uint8_t outdata)
+#define maxCmdSize 32
+#define maxMsgSize 32
+
+
+void talk_to_waldmann(char *befehl, char *returnArray, uint8_t returnSize)
 {
-  DDR_CONFIG_IN(SOFT_SPI_MISO);
+	uint8_t counter = 0;
 
-  uint8_t j, indata = indata;
-  for(j = 0; j < 8; j++)
-  {
-	if(outdata & 0x80)
-	  PIN_SET(SOFT_SPI_MOSI);
-	else
-	  PIN_CLEAR(SOFT_SPI_MOSI);
+	cs_low();	 // aquire device (logisch-0-aktiv)
 
-	PIN_SET(SOFT_SPI_SCK);
-	indata <<= 1;
+	//Befehl senden:
+	while(befehl[counter] != '\0')
+	{
+		spi_send((uint8_t)befehl[counter]);
+		counter++;
+	}
+	spi_send('\0');
 
-	if(PIN_HIGH(SOFT_SPI_MISO))
-	  indata |= 1;
+	cs_high();
 
-	PIN_CLEAR(SOFT_SPI_SCK);
+	//Steuercontroller Zeit zum Verarbeiten des Befehls geben:
+	syslog_sendf("Sende '%s' an Steuercontroller\n",befehl);
 
-	outdata <<= 1;
-  }
+	cs_low();
 
-  DDR_CONFIG_OUT(SOFT_SPI_MISO);
-  return indata;
+	//Antwort des Steuercontrollers einlesen:
+	for(counter=0;counter<returnSize;counter++)
+	{
+		returnArray[counter] = (char)spi_send(0);
+		if(returnArray[counter] == '\0')
+			break;
+	}
+
+	returnArray[returnSize-1] = '\0';	//Stringende am Ende des Arrays setzen
+
+	cs_high();	// release device
 }
+
 
 
 int16_t parse_cmd_wcmd(char *cmd, char *output, uint16_t len)
 {
-//	uint8_t uint_value = 174;
-//
-//	return ECMD_FINAL(snprintf_P(output, len, PSTR("%u"), uint_value));
-//	return ECMD_FINAL_OK;
-	return ECMD_FINAL(snprintf_P(output, len, PSTR("%u"), (int16_t)soft_spi_send(0)));
+	uint8_t ret = 0;
+	char wcmdArgument[maxCmdSize];	// Festlegen der Array-Größe wichtig, sonst gehts nur bis ca. 5 Zeichen
+	char message[maxMsgSize];
+
+	//Einlesen des wcmd-Parameters (als String)
+	ret = sscanf_P(cmd, PSTR("%s"), &wcmdArgument);
+
+	syslog_sendf("ECMD 'wcmd %s' erhalten\n", wcmdArgument);
+
+	talk_to_waldmann(wcmdArgument,message,maxMsgSize);
+
+	syslog_sendf("Antwort vom Stuercontroller: '%s'\n", message);
+
+	if (ret == 1)	//Wenn 1 Argument angekommen
+		return ECMD_FINAL(snprintf_P(output, len, PSTR("%s"), message));
+	else
+		return ECMD_ERR_PARSE_ERROR;
 }
 
 /*
-  -- Ethersex META --
-  block(Waldmann-Modul)
-  ecmd_feature(wcmd, "wcmd",Command [Value], Sendet den Command weiter.)
+-- Ethersex META --
+block(WALDMANN)
+ecmd_feature(wcmd, "wcmd",param1, wcmd-description)
 */
 

@@ -83,7 +83,7 @@ int16_t parse_cmd_ip (char *cmd, char *output, uint16_t len);
 int16_t parse_cmd_gw (char *cmd, char *output, uint16_t len);
 #endif
 #endif
-int16_t parse_cmd_wtest (char *cmd, char *output, uint16_t len);
+int16_t parse_cmd_wcmd (char *cmd, char *output, uint16_t len);
 #ifdef I2C_DETECT_SUPPORT
 int16_t parse_cmd_i2c_detect (char *cmd, char *output, uint16_t len);
 #endif
@@ -192,7 +192,7 @@ const char PROGMEM ecmd_ip_text[] = "ip";
 const char PROGMEM ecmd_gw_text[] = "gw";
 #endif
 #endif
-const char PROGMEM ecmd_wtest_text[] = "wtest";
+const char PROGMEM ecmd_wcmd_text[] = "wcmd";
 #ifdef I2C_DETECT_SUPPORT
 const char PROGMEM ecmd_i2c_detect_text[] = "i2c detect";
 #endif
@@ -302,7 +302,7 @@ const struct ecmd_command_t PROGMEM ecmd_cmds[] = {
 	{ ecmd_gw_text, parse_cmd_gw },
 #endif
 #endif
-	{ ecmd_wtest_text, parse_cmd_wtest },
+	{ ecmd_wcmd_text, parse_cmd_wcmd },
 #ifdef I2C_DETECT_SUPPORT
 	{ ecmd_i2c_detect_text, parse_cmd_i2c_detect },
 #endif
