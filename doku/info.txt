@@ -16,18 +16,24 @@ telnet 192.168.0.174 2701
 Pseudo-SCPI-Befehle
 
 X = 1..20; Y = 1..8
-
+!!!!!!!!!!!!!KEINE LEERZEICHEN!!!!!!!!!!!!! Sonst wird das zumindest über Konsole, als zweites Wtest-Argument angesehen
 Messsourcen-CMDs:				Antwort (bsp):
-"SOURCE:NAME? (@X)"				"Tempfuehler"
-"SOURCE:VALUE? (@X)"				"24.2"	
-"SOURCE:UNIT? (@X)"				"°C"
+"SOURCE:NAME?(@X)"				"Tempfuehler"
+"SOURCE:VALUE?(@X)"			"24.2"	
+"SOURCE:UNIT?(@X)"				"°C"
 
 Schalter:
-"SWITCH:NAME? (@Y)"				"Switchxy"
-"SWITCH:VALUE? (@Y)"				1 (= AN) | 0 (=Aus)
-"SWITCH:ON (@Y)"				keine Antwort!
-"SWITCH:OFF (@Y)"				keine Antwort!
+"SWITCH:NAME?(@Y)"				"Switchxy"
+"SWITCH:VALUE?(@Y)"				1 (= AN) | 0 (=Aus)
+"SWITCH:ON(@Y)"				keine Antwort!
+"SWITCH:OFF(@Y)"				keine Antwort!
 
 Neue Werte/Namen vorhanden:
-"*STB?"							0x01 (Wenn neue Werte vorhanden) | 0x10 (neue Name vorhanden) | 0x11 (beides) | 0x00 wenn nix
+"*STB?"							siehe unten
 "*CLS"							keine Antwort! Löscht Statusbyte			
+
+*STB? Antworten
+'!' = 0x21 0010 0001 (Ascii-Code) für "keine neuen Messwerte/Namen "
+'A' = 0x41 0100 0001 (Ascii-Code) für "Neue Messwerte vorhanden"
+'a' = 0x61 0110 0001 (Ascii-Code) für "Neue Namen vorhanden"
+'O' = 0x4F 0100 1111 (Ascii-Code) für "Neue Namen und Messwerte vorhanden" 
