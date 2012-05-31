@@ -203,7 +203,7 @@ public class AVRWebserverActivity extends Activity {
 				log.setText(avrConn.sendMsg("hostname"));
 			}
 
-			Toast.makeText(this, R.string.aktualisiert, Toast.LENGTH_SHORT)
+			Toast.makeText(this, "Achim stink!", Toast.LENGTH_SHORT)
 					.show();
 
 		} catch (Exception e) {
