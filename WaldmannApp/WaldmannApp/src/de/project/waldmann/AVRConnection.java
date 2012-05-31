@@ -60,7 +60,8 @@ public class AVRConnection {
 		writeStream.writeBytes(msg + '\n');
 		writeStream.flush();
 
-		rtrnMsg = readStream.readLine();
+		String cutIt = readStream.readLine();
+		rtrnMsg = cutIt.substring(0, (cutIt.length()>=30)? 30 : cutIt.length() );
 		
 		//rtrnMsg = cutString().toString();
 		

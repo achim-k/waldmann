@@ -2,7 +2,6 @@ package de.project.waldmann;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.LocalActivityManager;
@@ -10,6 +9,9 @@ import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.Editable;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -28,18 +30,7 @@ public class AVRWebserverActivity extends Activity {
 	String rtrnStr;
 	static AVRConnection avrConn;
 	static String ipStr;
-	
 
-	// ToggleButtons des SwitchTab
-	ToggleButton buttonOnOff01;
-	ToggleButton buttonOnOff02;
-	ToggleButton buttonOnOff03;
-	ToggleButton buttonOnOff04;
-	ToggleButton buttonOnOff05;
-	ToggleButton buttonOnOff06;
-	ToggleButton buttonOnOff07;
-	ToggleButton buttonOnOff08;
-	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 
@@ -61,21 +52,21 @@ public class AVRWebserverActivity extends Activity {
 				.newTabSpec("messwerte")
 				.setIndicator("Messwerte",
 						res.getDrawable(R.drawable.ic_tab_data))
-				.setContent(R.id.layoutTab1);
+				.setContent(R.id.Tab1);
 		tabHost.addTab(spec);
 
 		spec = tabHost
 				.newTabSpec("schalter")
 				.setIndicator("Schalter",
 						res.getDrawable(R.drawable.ic_tab_switches))
-				.setContent(R.id.layoutTab2);
+				.setContent(R.id.Tab2);
 		tabHost.addTab(spec);
 
 		spec = tabHost
 				.newTabSpec("impressum")
 				.setIndicator("Impressum",
 						res.getDrawable(R.drawable.ic_tab_impressum))
-				.setContent(R.id.layoutTab3);
+				.setContent(R.id.Tab3);
 		tabHost.addTab(spec);
 
 		tabHost.setCurrentTabByTag("messwerte");
@@ -118,7 +109,59 @@ public class AVRWebserverActivity extends Activity {
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.menu, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		
+		switch (item.getItemId()) {
+		case R.id.item1:
+			// TCPSocket einstellungen
+			showAddressDialog();
+			return true;
+
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
 	
+	void showAddressDialog() {
+
+
+		// Eingabe der AVR-Serveraddresse
+		final EditText inputAddress = new EditText(this);
+		inputAddress.setText("192.168.0.174");
+
+		@SuppressWarnings("unused")
+		AlertDialog setAVRaddress = new AlertDialog.Builder(this)
+				.setTitle(R.string.einstellungen)
+				.setMessage(R.string.address)
+				.setView(inputAddress)
+				.setNegativeButton(R.string.verbinden,
+						new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								Editable value = inputAddress.getText();
+								ipStr = value.toString();
+								try {
+									avrConn = AVRConnection.getInstance();
+									avrConn.connect(ipStr, 2701);
+								} catch (UnknownHostException e) {
+									e.printStackTrace();
+								} catch (IOException e) {
+									e.printStackTrace();
+								}
+							}
+						}).show();
+	}
+
 	// MesswertTab - BEGIN
 	void init() {
 
@@ -140,58 +183,29 @@ public class AVRWebserverActivity extends Activity {
 				updateSwitches();
 			}
 		});
-		
-		
-		// Eingabe der AVR-Serveraddresse
-		final EditText inputAddress = new EditText(this);
-		inputAddress.setText("192.168.0.174");
-		
-		@SuppressWarnings("unused")
-		AlertDialog setAVRaddress = new AlertDialog.Builder(this)
-		.setTitle(R.string.einstellungen)
-		.setMessage(R.string.address)
-		.setView(inputAddress)
-		.setNegativeButton(R.string.ok, new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				Editable value = inputAddress.getText();
-				ipStr = value.toString();
-				try {
-					avrConn = AVRConnection.getInstance();
-					avrConn.connect(ipStr, 2701);
-				} catch (UnknownHostException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}).show();
-		// Einstellung zu Addressverarbeitung!
 
 	}
 
 	void updateData() {
-		// TODO: muss nun für alle 20 geschehen!!!
-		TextView log = (TextView) findViewById(R.id.textView01);
+		TextView log;
 
 		try {
-			// avrConn.connect("192.168.0.174", 2701);
 			// 10.0.2.2 ist der Localhost des PC auf dem das virt.Device laeuft
-			//avrConn.connect("10.0.2.2", 8001);
+			// avrConn.connect("10.0.2.2", 8001);
 
-			// SCPI BEFEHL!!! - BEGIN
-			rtrnStr = avrConn.sendMsg("hostname");
-			// SCPI BEFEHL!!! - END
+			// spaeter:
+			// log.setText(avrConn.sendMsg("wcmd SOURCE:NAME?(@1)"));
 
-			log.setText(rtrnStr);
-			
-			// Zeile 2
-			log = (TextView) findViewById(R.id.TextView02);
-			log.setText(avrConn.sendMsg(""));
-			
-			
-			Toast.makeText(this, R.string.aktualisiert, Toast.LENGTH_SHORT).show();
-			
+			for (int i = 1; i <= 20; ++i) {
+
+				log = (TextView) findViewById(getResources().getIdentifier(
+						"textView" + i, "id", getPackageName()));
+				log.setText(avrConn.sendMsg("hostname"));
+			}
+
+			Toast.makeText(this, "Achim stink!", Toast.LENGTH_SHORT)
+					.show();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -203,43 +217,21 @@ public class AVRWebserverActivity extends Activity {
 	// SchalterTab - BEGIN
 
 	public void updateSwitches() {
+		ToggleButton tb;
 
 		try {
-			// AVRConnection avrConn = new AVRConnection();
 
-			// avrConn.connect("192.168.0.174", 2701);
-			// 10.0.2.2 ist der Localhost des PC auf dem das virt.Device laeuft
-			// avrConn.connect("10.0.2.2", 8001);
+			for (int i = 1; i <= 8; ++i) {
 
-			// SCPI BEFEHL!!! - BEGIN
-			// rtrnStr = avrConn.sendMsg("switches?");
-			// SCPI BEFEHL!!! - END
+				tb = (ToggleButton) findViewById(getResources().getIdentifier(
+						"toggleButton" + i, "id", getPackageName()));
+				// tb.setText(avrConn.sendMsg("hostname"));
+				if (avrConn.sendMsg("hostname").equals("Waldmann"))
+					tb.setChecked(true);
+			}
 
-			/*
-			 * Boolean[] switches = new Boolean[8];
-			 * 
-			 * switches[0] = true; switches[1] = false; switches[2] = true;
-			 * switches[3] = false; switches[4] = false; switches[5] = false;
-			 * switches[6] = true; switches[7] = true;
-			 * 
-			 * 
-			 * buttonOnOff01.setChecked( switches[0] );
-			 * buttonOnOff02.setChecked( switches[1] );
-			 * buttonOnOff03.setChecked( switches[2] );
-			 * buttonOnOff04.setChecked( switches[3] );
-			 * buttonOnOff05.setChecked( switches[4] );
-			 * buttonOnOff06.setChecked( switches[5] );
-			 * buttonOnOff07.setChecked( switches[6] );
-			 * buttonOnOff08.setChecked( switches[7] );
-			 */
-			buttonOnOff01 = (ToggleButton) findViewById(R.id.toggleButton01);
-			buttonOnOff01.setChecked(true);
-
-			// Stringverarbeitung um 30x20 Feld zu erstellen
-
-			Toast.makeText(this, R.string.aktualisiert, Toast.LENGTH_SHORT).show();
-
-			// avrConn.disconnect();
+			Toast.makeText(this, R.string.aktualisiert, Toast.LENGTH_SHORT)
+					.show();
 
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -251,9 +243,40 @@ public class AVRWebserverActivity extends Activity {
 	public void checkTB01(View v) {
 
 		if (((ToggleButton) v).isChecked()) {
-			Toast.makeText(this, "TB1 on", Toast.LENGTH_SHORT).show();
+			try {
+				// Button auf ON und zustand auf ON
+				// avrConn.sendMsg("ON");
+				// Abfrag ob Zustand geaendert wurde
+				if (avrConn.sendMsg("hostname").equals("Waldmann")) {
+					ToggleButton tb = (ToggleButton) findViewById(R.id.toggleButton1);
+					tb.setChecked(true);
+					Toast.makeText(this, "ON-OK", Toast.LENGTH_SHORT).show();
+				}
+				// falls Zustand nicht geaendert wurde
+				else {
+					ToggleButton tb = (ToggleButton) findViewById(R.id.toggleButton1);
+					tb.setChecked(false);
+					Toast.makeText(this, "ON-FAIL", Toast.LENGTH_SHORT).show();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		} else {
-			Toast.makeText(this, "TB1 off", Toast.LENGTH_SHORT).show();
+			// Button auf OFF
+			// avrConn.sendMsg("OFF");
+			try {
+				if (avrConn.sendMsg("hostname").equals("Waldmann")) {
+					ToggleButton tb = (ToggleButton) findViewById(R.id.toggleButton1);
+					tb.setChecked(false);
+					Toast.makeText(this, "OFF-OK", Toast.LENGTH_SHORT).show();
+				} else {
+					ToggleButton tb = (ToggleButton) findViewById(R.id.toggleButton1);
+					tb.setChecked(true);
+					Toast.makeText(this, "OFF-FAIL", Toast.LENGTH_SHORT).show();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		// SCPI BEFEHL!!! - BEGIN
 

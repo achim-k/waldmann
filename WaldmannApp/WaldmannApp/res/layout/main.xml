@@ -21,7 +21,7 @@
             android:layout_height="fill_parent" >
 
             <ScrollView
-                android:id="@+id/scrollView1"
+                android:id="@+id/Tab1"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content" >
 
@@ -40,47 +40,47 @@
                         android:text="@string/button1" />
 
                     <TextView
-                        android:id="@+id/textView01"
+                        android:id="@+id/textView1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:id="@+id/TextView02"
+                        android:id="@+id/textView2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:id="@+id/TextView03"
+                        android:id="@+id/textView3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:id="@+id/textView04"
+                        android:id="@+id/textView4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:id="@+id/TextView05"
+                        android:id="@+id/textView5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:id="@+id/TextView06"
+                        android:id="@+id/textView6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:id="@+id/textView07"
+                        android:id="@+id/textView7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:id="@+id/TextView08"
+                        android:id="@+id/textView8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:id="@+id/TextView09"
+                        android:id="@+id/textView9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -90,12 +90,12 @@
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:id="@+id/TextView11"
+                        android:id="@+id/textView11"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:id="@+id/TextView12"
+                        android:id="@+id/textView12"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -105,12 +105,12 @@
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:id="@+id/TextView14"
+                        android:id="@+id/textView14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:id="@+id/TextView15"
+                        android:id="@+id/textView15"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -120,12 +120,12 @@
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:id="@+id/TextView17"
+                        android:id="@+id/textView17"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:id="@+id/TextView18"
+                        android:id="@+id/textView18"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -135,14 +135,14 @@
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:id="@+id/TextView20"
+                        android:id="@+id/textView20"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
             </ScrollView>
 
             <ScrollView
-                android:id="@+id/scrollView2"
+                android:id="@+id/Tab2"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content" >
 
@@ -171,14 +171,13 @@
                             android:layout_height="wrap_content" >
 
                             <ToggleButton
-                                android:id="@+id/toggleButton01"
+                                android:id="@+id/toggleButton1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:onClick="checkTB01"
-                                android:text="ToggleButton" />
+                                android:onClick="checkTB01" />
 
                             <TextView
-                                android:id="@+id/textView2"
+                                android:id="@+id/textView41"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
@@ -192,14 +191,13 @@
                             android:layout_height="wrap_content" >
 
                             <ToggleButton
-                                android:id="@+id/toggleButton02"
+                                android:id="@+id/toggleButton2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:onClick="checkTB02"
-                                android:text="ToggleButton" />
+                                android:onClick="checkTB02" />
 
                             <TextView
-                                android:id="@+id/textView3"
+                                android:id="@+id/textView42"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
@@ -213,14 +211,13 @@
                             android:layout_height="wrap_content" >
 
                             <ToggleButton
-                                android:id="@+id/toggleButton03"
+                                android:id="@+id/toggleButton3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:onClick="checkTB03"
-                                android:text="ToggleButton" />
+                                android:onClick="checkTB03" />
 
                             <TextView
-                                android:id="@+id/textView4"
+                                android:id="@+id/textView43"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
@@ -234,14 +231,13 @@
                             android:layout_height="wrap_content" >
 
                             <ToggleButton
-                                android:id="@+id/toggleButton04"
+                                android:id="@+id/toggleButton4"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:onClick="checkTB04"
-                                android:text="ToggleButton" />
+                                android:onClick="checkTB04" />
 
                             <TextView
-                                android:id="@+id/textView5"
+                                android:id="@+id/textView44"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
@@ -255,14 +251,13 @@
                             android:layout_height="wrap_content" >
 
                             <ToggleButton
-                                android:id="@+id/toggleButton05"
+                                android:id="@+id/toggleButton5"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:onClick="checkTB05"
-                                android:text="ToggleButton" />
+                                android:onClick="checkTB05" />
 
                             <TextView
-                                android:id="@+id/textView6"
+                                android:id="@+id/textView45"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
@@ -276,14 +271,13 @@
                             android:layout_height="wrap_content" >
 
                             <ToggleButton
-                                android:id="@+id/toggleButton06"
+                                android:id="@+id/toggleButton6"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:onClick="checkTB06"
-                                android:text="ToggleButton" />
+                                android:onClick="checkTB06" />
 
                             <TextView
-                                android:id="@+id/textView7"
+                                android:id="@+id/textView46"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
@@ -297,14 +291,13 @@
                             android:layout_height="wrap_content" >
 
                             <ToggleButton
-                                android:id="@+id/toggleButton07"
+                                android:id="@+id/toggleButton7"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:onClick="checkTB07"
-                                android:text="ToggleButton" />
+                                android:onClick="checkTB07" />
 
                             <TextView
-                                android:id="@+id/textView8"
+                                android:id="@+id/textView47"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
@@ -318,14 +311,13 @@
                             android:layout_height="wrap_content" >
 
                             <ToggleButton
-                                android:id="@+id/toggleButton08"
+                                android:id="@+id/toggleButton8"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:onClick="checkTB08"
-                                android:text="ToggleButton" />
+                                android:onClick="checkTB08" />
 
                             <TextView
-                                android:id="@+id/textView9"
+                                android:id="@+id/textView48"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
@@ -337,7 +329,7 @@
             </ScrollView>
 
             <LinearLayout
-                android:id="@+id/layoutTab3"
+                android:id="@+id/Tab3"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:orientation="vertical" >
