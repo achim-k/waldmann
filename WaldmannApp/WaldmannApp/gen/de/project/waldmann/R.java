@@ -97,6 +97,7 @@ public final class R {
         public static final int button2=0x7f040005;
         public static final int einstellungen=0x7f040011;
         public static final int impressum=0x7f04000e;
+        public static final int ipfalsch=0x7f040016;
         public static final int messwerte=0x7f040001;
         public static final int ok=0x7f040014;
         public static final int schalter=0x7f040004;
