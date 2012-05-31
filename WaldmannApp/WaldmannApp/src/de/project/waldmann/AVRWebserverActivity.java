@@ -197,10 +197,14 @@ public class AVRWebserverActivity extends Activity {
 			// log.setText(avrConn.sendMsg("wcmd SOURCE:NAME?(@1)"));
 
 			for (int i = 1; i <= 20; ++i) {
+				String rtrStr = "";
 
 				log = (TextView) findViewById(getResources().getIdentifier(
 						"textView" + i, "id", getPackageName()));
-				log.setText(avrConn.sendMsg("hostname"));
+				rtrStr = rtrStr + avrConn.sendMsg("wcmd SOURCE:NAME?(@" + i + ")");
+				rtrStr = rtrStr + avrConn.sendMsg("wcmd SOURCE:VALUE?(@" + i + ")");
+				rtrStr = rtrStr + avrConn.sendMsg("wcmd SOURCE:UNIT?(@" + i + ")");
+				log.setText(rtrStr);
 			}
 
 			Toast.makeText(this, "Achim stink!", Toast.LENGTH_SHORT)
@@ -226,8 +230,11 @@ public class AVRWebserverActivity extends Activity {
 				tb = (ToggleButton) findViewById(getResources().getIdentifier(
 						"toggleButton" + i, "id", getPackageName()));
 				// tb.setText(avrConn.sendMsg("hostname"));
-				if (avrConn.sendMsg("hostname").equals("Waldmann"))
+				if (avrConn.sendMsg("wcmd SWITCH:VALUE?(@" + i + ")").equals("1"))
 					tb.setChecked(true);
+				else {
+					tb.setChecked(false);
+				}
 			}
 
 			Toast.makeText(this, R.string.aktualisiert, Toast.LENGTH_SHORT)
@@ -245,9 +252,10 @@ public class AVRWebserverActivity extends Activity {
 		if (((ToggleButton) v).isChecked()) {
 			try {
 				// Button auf ON und zustand auf ON
-				// avrConn.sendMsg("ON");
+				 avrConn.sendMsg("wcmd SWITCH:ON(@1)");
 				// Abfrag ob Zustand geaendert wurde
-				if (avrConn.sendMsg("hostname").equals("Waldmann")) {
+				
+				if (avrConn.sendMsg("wcmd SWITCH:VALUE?(@1)").equals("1")) {
 					ToggleButton tb = (ToggleButton) findViewById(R.id.toggleButton1);
 					tb.setChecked(true);
 					Toast.makeText(this, "ON-OK", Toast.LENGTH_SHORT).show();
@@ -263,9 +271,14 @@ public class AVRWebserverActivity extends Activity {
 			}
 		} else {
 			// Button auf OFF
-			// avrConn.sendMsg("OFF");
 			try {
-				if (avrConn.sendMsg("hostname").equals("Waldmann")) {
+				avrConn.sendMsg("wcmd SWITCH:OFF(@1)");
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			try {
+				if (avrConn.sendMsg("wcmd SWITCH:VALUE?(@1)").equals("0")) {
 					ToggleButton tb = (ToggleButton) findViewById(R.id.toggleButton1);
 					tb.setChecked(false);
 					Toast.makeText(this, "OFF-OK", Toast.LENGTH_SHORT).show();
