@@ -1,5 +1,5 @@
-#Wed May 16 12:33:55 CEST 2012
-avrtarget/ClockFrequency=1000000
+#Tue May 29 20:51:27 CEST 2012
+avrtarget/ClockFrequency=16000000
 avrtarget/ExtRAMSize=0
 avrtarget/ExtendedRAM=false
 avrtarget/MCUType=at90s8515

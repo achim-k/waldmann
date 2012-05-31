@@ -1,2 +1,0 @@
-dep_bool_menu "Wtest" WTEST $TCP_SUPPORT
-endmenu
