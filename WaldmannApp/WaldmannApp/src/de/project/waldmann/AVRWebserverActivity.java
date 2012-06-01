@@ -71,12 +71,6 @@ public class AVRWebserverActivity extends Activity {
 		// TCPSocket einstellungen
 		showAddressDialog();
 
-		updateDataAndNames();
-		updateSwitches();
-
-		// Logik des messwerteTab
-		initButtons();
-
 	}
 
 	@Override
@@ -99,7 +93,9 @@ public class AVRWebserverActivity extends Activity {
 			avrConn.connect(ipStr, 2701);
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
+			Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
 		} catch (IOException e) {
+			Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
 			e.printStackTrace();
 		}
 	}
@@ -112,6 +108,7 @@ public class AVRWebserverActivity extends Activity {
 			avrConn.disconnect();
 		} catch (IOException e) {
 			e.printStackTrace();
+			Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
 		}
 	}
 
@@ -137,11 +134,15 @@ public class AVRWebserverActivity extends Activity {
 						updateData();
 						avrConn.sendMsg("wcmd *CLS");
 					} else {
+						Toast.makeText(getApplicationContext(),
+								R.string.nichtsNeues, Toast.LENGTH_SHORT)
+								.show();
 					}
 
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
+					Toast.makeText(getApplicationContext(), e.getMessage(),
+							Toast.LENGTH_SHORT).show();
 				}
 			}
 		});
@@ -177,10 +178,23 @@ public class AVRWebserverActivity extends Activity {
 								try {
 									avrConn = AVRConnection.getInstance();
 									avrConn.connect(ipStr, 2701);
+
+									updateDataAndNames();
+									updateSwitches();
+
+									// Logik des messwerteTab
+									initButtons();
+
 								} catch (UnknownHostException e) {
 									e.printStackTrace();
+									Toast.makeText(getApplicationContext(),
+											e.getMessage(), Toast.LENGTH_SHORT)
+											.show();
 								} catch (IOException e) {
 									e.printStackTrace();
+									Toast.makeText(getApplicationContext(),
+											e.getMessage(), Toast.LENGTH_SHORT)
+											.show();
 								}
 							}
 						}).show();
@@ -286,122 +300,123 @@ public class AVRWebserverActivity extends Activity {
 	}
 
 	public void checkTB01(View v) {
-
 		if (((ToggleButton) v).isChecked()) {
-			try {
-				// Button auf ON und zustand auf ON
-				avrConn.sendMsg("wcmd SWITCH:ON(@1)");
-				// Abfrag ob Zustand geaendert wurde
-
-				if (avrConn.sendMsg("wcmd SWITCH:VALUE?(@1)").equals("1")) {
-					ToggleButton tb = (ToggleButton) findViewById(R.id.toggleButton1);
-					tb.setChecked(true);
-					Toast.makeText(this, "ON-OK", Toast.LENGTH_SHORT).show();
-				}
-				// falls Zustand nicht geaendert wurde
-				else {
-					ToggleButton tb = (ToggleButton) findViewById(R.id.toggleButton1);
-					tb.setChecked(false);
-					Toast.makeText(this, "ON-FAIL", Toast.LENGTH_SHORT).show();
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			// Button auf ON
+			setSwitchOn(1);
 		} else {
 			// Button auf OFF
-			try {
-				avrConn.sendMsg("wcmd SWITCH:OFF(@1)");
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			try {
-				if (avrConn.sendMsg("wcmd SWITCH:VALUE?(@1)").equals("0")) {
-					ToggleButton tb = (ToggleButton) findViewById(R.id.toggleButton1);
-					tb.setChecked(false);
-					Toast.makeText(this, "OFF-OK", Toast.LENGTH_SHORT).show();
-				} else {
-					ToggleButton tb = (ToggleButton) findViewById(R.id.toggleButton1);
-					tb.setChecked(true);
-					Toast.makeText(this, "OFF-FAIL", Toast.LENGTH_SHORT).show();
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			setSwitchOff(1);
 		}
-		// SCPI BEFEHL!!! - BEGIN
-
-		// SCPI BEFEHL!!! - END
-
-		// writeStream.writeBytes(message + '\n');
-		// writeStream.flush();
-
-		// rtrnStr = readStream.readLine();
 	}
 
 	public void checkTB02(View v) {
-
 		if (((ToggleButton) v).isChecked()) {
-			Toast.makeText(this, "TB2 on", Toast.LENGTH_SHORT).show();
+			// Button auf ON
+			setSwitchOn(2);
 		} else {
-			Toast.makeText(this, "TB2 off", Toast.LENGTH_SHORT).show();
+			// Button auf OFF
+			setSwitchOff(2);
 		}
 	}
 
 	public void checkTB03(View v) {
-
 		if (((ToggleButton) v).isChecked()) {
-			Toast.makeText(this, "TB3 on", Toast.LENGTH_SHORT).show();
+			// Button auf ON
+			setSwitchOn(3);
 		} else {
-			Toast.makeText(this, "TB3 off", Toast.LENGTH_SHORT).show();
+			// Button auf OFF
+			setSwitchOff(3);
 		}
 	}
 
 	public void checkTB04(View v) {
-
 		if (((ToggleButton) v).isChecked()) {
-			Toast.makeText(this, "TB4 on", Toast.LENGTH_SHORT).show();
+			// Button auf ON
+			setSwitchOn(4);
 		} else {
-			Toast.makeText(this, "TB4 off", Toast.LENGTH_SHORT).show();
+			// Button auf OFF
+			setSwitchOff(4);
 		}
 	}
 
 	public void checkTB05(View v) {
-
 		if (((ToggleButton) v).isChecked()) {
-			Toast.makeText(this, "TB5 on", Toast.LENGTH_SHORT).show();
+			// Button auf ON
+			setSwitchOn(5);
 		} else {
-			Toast.makeText(this, "TB5 off", Toast.LENGTH_SHORT).show();
+			// Button auf OFF
+			setSwitchOff(5);
 		}
 	}
 
 	public void checkTB06(View v) {
-
 		if (((ToggleButton) v).isChecked()) {
-			Toast.makeText(this, "TB6 on", Toast.LENGTH_SHORT).show();
+			// Button auf ON
+			setSwitchOn(6);
 		} else {
-			Toast.makeText(this, "TB6 off", Toast.LENGTH_SHORT).show();
+			// Button auf OFF
+			setSwitchOff(6);
 		}
 	}
 
 	public void checkTB07(View v) {
-
 		if (((ToggleButton) v).isChecked()) {
-			Toast.makeText(this, "TB7 on", Toast.LENGTH_SHORT).show();
+			// Button auf ON
+			setSwitchOn(7);
 		} else {
-			Toast.makeText(this, "TB7 off", Toast.LENGTH_SHORT).show();
+			// Button auf OFF
+			setSwitchOff(7);
 		}
 	}
 
 	public void checkTB08(View v) {
-
 		if (((ToggleButton) v).isChecked()) {
-			Toast.makeText(this, "TB8 on", Toast.LENGTH_SHORT).show();
+			// Button auf ON
+			setSwitchOn(8);
 		} else {
-			Toast.makeText(this, "TB8 off", Toast.LENGTH_SHORT).show();
+			// Button auf OFF
+			setSwitchOff(8);
 		}
 	}
 
-	// SchalterTab - END
+	private void setSwitchOff(int i) {
+		try {
+			avrConn.sendMsg("wcmd SWITCH:OFF(@" + i + ")");
+			// Abfrag ob Zustand geaendert wurde
+			if (avrConn.sendMsg("wcmd SWITCH:VALUE?(@" + i + ")").equals("0")) {
+				ToggleButton tb = (ToggleButton) findViewById(R.id.toggleButton1);
+				tb.setChecked(false);
+				Toast.makeText(this, "OFF-OK", Toast.LENGTH_SHORT).show();
+			} else {
+				// falls Zustand nicht geaendert wurde
+				ToggleButton tb = (ToggleButton) findViewById(R.id.toggleButton1);
+				tb.setChecked(true);
+				Toast.makeText(this, "OFF-FAIL", Toast.LENGTH_SHORT).show();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+		}
+	}
 
+	private void setSwitchOn(int i) {
+		try {
+			avrConn.sendMsg("wcmd SWITCH:ON(@" + i + ")");
+			// Abfrag ob Zustand geaendert wurde
+			if (avrConn.sendMsg("wcmd SWITCH:VALUE?(@" + i + ")").equals("1")) {
+				ToggleButton tb = (ToggleButton) findViewById(R.id.toggleButton1);
+				tb.setChecked(true);
+				Toast.makeText(this, "ON-OK", Toast.LENGTH_SHORT).show();
+			}
+			// falls Zustand nicht geaendert wurde
+			else {
+				ToggleButton tb = (ToggleButton) findViewById(R.id.toggleButton1);
+				tb.setChecked(false);
+				Toast.makeText(this, "ON-FAIL", Toast.LENGTH_SHORT).show();
+			}
+		} catch (Exception e) {
+			Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+		}
+	}
+	// SchalterTab - END
 }
