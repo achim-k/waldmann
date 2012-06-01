@@ -9,9 +9,6 @@ import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.Editable;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -71,8 +68,14 @@ public class AVRWebserverActivity extends Activity {
 
 		tabHost.setCurrentTabByTag("messwerte");
 
-		// logik des messwerteTab
-		init();
+		// TCPSocket einstellungen
+		showAddressDialog();
+
+		updateDataAndNames();
+		updateSwitches();
+
+		// Logik des messwerteTab
+		initButtons();
 
 	}
 
@@ -92,6 +95,7 @@ public class AVRWebserverActivity extends Activity {
 	protected void onRestart() {
 		super.onRestart();
 		try {
+			avrConn = AVRConnection.getInstance();
 			avrConn.connect(ipStr, 2701);
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
@@ -104,35 +108,55 @@ public class AVRWebserverActivity extends Activity {
 	protected void onStop() {
 		super.onStop();
 		try {
+			avrConn = AVRConnection.getInstance();
 			avrConn.disconnect();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.menu, menu);
-		return super.onCreateOptionsMenu(menu);
+	// MesswertTab - BEGIN
+	void initButtons() {
+
+		Button button1 = (Button) findViewById(R.id.button1);
+		Button button2 = (Button) findViewById(R.id.button2);
+
+		button1.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				try {
+					String rtrnStr = avrConn.sendMsg("wcmd *STB?");
+					if (rtrnStr.equals("O")) {
+						updateDataAndNames();
+						avrConn.sendMsg("wcmd *CLS");
+					} else if (rtrnStr.equals("a")) {
+						updateNames();
+						avrConn.sendMsg("wcmd *CLS");
+					} else if (rtrnStr.equals("A")) {
+						updateData();
+						avrConn.sendMsg("wcmd *CLS");
+					} else {
+					}
+
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+
+		button2.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				updateSwitches();
+			}
+		});
+
 	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		
-		switch (item.getItemId()) {
-		case R.id.item1:
-			// TCPSocket einstellungen
-			showAddressDialog();
-			return true;
-
-		default:
-			return super.onOptionsItemSelected(item);
-		}
-	}
-	
 	void showAddressDialog() {
-
 
 		// Eingabe der AVR-Serveraddresse
 		final EditText inputAddress = new EditText(this);
@@ -162,54 +186,59 @@ public class AVRWebserverActivity extends Activity {
 						}).show();
 	}
 
-	// MesswertTab - BEGIN
-	void init() {
-
-		Button button1 = (Button) findViewById(R.id.button1);
-		Button button2 = (Button) findViewById(R.id.button2);
-
-		button1.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				updateData();
-			}
-		});
-
-		button2.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-				updateSwitches();
-			}
-		});
-
-	}
-
-	void updateData() {
+	void updateDataAndNames() {
 		TextView log;
-
 		try {
 			// 10.0.2.2 ist der Localhost des PC auf dem das virt.Device laeuft
 			// avrConn.connect("10.0.2.2", 8001);
-
-			// spaeter:
-			// log.setText(avrConn.sendMsg("wcmd SOURCE:NAME?(@1)"));
-
 			for (int i = 1; i <= 20; ++i) {
-				String rtrStr = "";
 
 				log = (TextView) findViewById(getResources().getIdentifier(
-						"textView" + i, "id", getPackageName()));
-				rtrStr = rtrStr + avrConn.sendMsg("wcmd SOURCE:NAME?(@" + i + ")");
-				rtrStr = rtrStr + avrConn.sendMsg("wcmd SOURCE:VALUE?(@" + i + ")");
-				rtrStr = rtrStr + avrConn.sendMsg("wcmd SOURCE:UNIT?(@" + i + ")");
-				log.setText(rtrStr);
+						"textView" + i + "1", "id", getPackageName()));
+				log.setText(avrConn.sendMsg("wcmd SOURCE:NAME?(@" + i + ")"));
+
+				log = (TextView) findViewById(getResources().getIdentifier(
+						"textView" + i + "2", "id", getPackageName()));
+				log.setText(avrConn.sendMsg("wcmd SOURCE:VALUE?(@" + i + ")"));
+
+				log = (TextView) findViewById(getResources().getIdentifier(
+						"textView" + i + "3", "id", getPackageName()));
+				log.setText(avrConn.sendMsg("wcmd SOURCE:UNIT?(@" + i + ")"));
 			}
-
-			Toast.makeText(this, "Achim stink!", Toast.LENGTH_SHORT)
+			Toast.makeText(this, R.string.aktualisiert, Toast.LENGTH_SHORT)
 					.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+			Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+		}
+	}
 
+	private void updateData() {
+		TextView log;
+		try {
+			for (int i = 1; i <= 20; ++i) {
+				log = (TextView) findViewById(getResources().getIdentifier(
+						"textView" + i + "2", "id", getPackageName()));
+				log.setText(avrConn.sendMsg("wcmd SOURCE:VALUE?(@" + i + ")"));
+			}
+			Toast.makeText(this, R.string.aktualisiert, Toast.LENGTH_SHORT)
+					.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+			Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+		}
+	}
+
+	private void updateNames() {
+		TextView log;
+		try {
+			for (int i = 1; i <= 20; ++i) {
+				log = (TextView) findViewById(getResources().getIdentifier(
+						"textView" + i + "1", "id", getPackageName()));
+				log.setText(avrConn.sendMsg("wcmd SOURCE:NAME?(@" + i + ")"));
+			}
+			Toast.makeText(this, R.string.aktualisiert, Toast.LENGTH_SHORT)
+					.show();
 		} catch (Exception e) {
 			e.printStackTrace();
 			Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -220,17 +249,26 @@ public class AVRWebserverActivity extends Activity {
 
 	// SchalterTab - BEGIN
 
+	// Abfrage aller Schalter
 	public void updateSwitches() {
 		ToggleButton tb;
+		TextView tv;
 
 		try {
 
 			for (int i = 1; i <= 8; ++i) {
-
+				// Button zum setzen des Status
 				tb = (ToggleButton) findViewById(getResources().getIdentifier(
 						"toggleButton" + i, "id", getPackageName()));
-				// tb.setText(avrConn.sendMsg("hostname"));
-				if (avrConn.sendMsg("wcmd SWITCH:VALUE?(@" + i + ")").equals("1"))
+
+				// ButtonText zum setzen des ButtonNamens
+				tv = (TextView) findViewById(getResources().getIdentifier(
+						"textView4" + i, "id", getPackageName()));
+
+				tv.setText(avrConn.sendMsg("wcmd SWITCH:NAME?(@" + i + ")"));
+
+				if (avrConn.sendMsg("wcmd SWITCH:VALUE?(@" + i + ")").equals(
+						"1"))
 					tb.setChecked(true);
 				else {
 					tb.setChecked(false);
@@ -252,9 +290,9 @@ public class AVRWebserverActivity extends Activity {
 		if (((ToggleButton) v).isChecked()) {
 			try {
 				// Button auf ON und zustand auf ON
-				 avrConn.sendMsg("wcmd SWITCH:ON(@1)");
+				avrConn.sendMsg("wcmd SWITCH:ON(@1)");
 				// Abfrag ob Zustand geaendert wurde
-				
+
 				if (avrConn.sendMsg("wcmd SWITCH:VALUE?(@1)").equals("1")) {
 					ToggleButton tb = (ToggleButton) findViewById(R.id.toggleButton1);
 					tb.setChecked(true);

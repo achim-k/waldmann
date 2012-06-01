@@ -3,8 +3,11 @@
     <string name="app_name">Projekt AVR-Webserver</string>
     
     <string name="messwerte">Messwerte</string>
+    <string name="quellen">Messquellen</string>
+    <string name="einheiten">Einheiten</string>
     <string name="button1">aktualisieren</string>
     <string name="aktualisiert">aktualisiert</string>
+    <string name="nichtsNeues">Keine neuen Messwerte und Namen.</string>
         
     <string name="schalter">Schalter</string>
     <string name="button2">Zustände abfragen</string>
