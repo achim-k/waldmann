@@ -3,7 +3,9 @@
     <string name="app_name">Projekt AVR-Webserver</string>
     
     <string name="messwerte">Messwerte</string>
-    <string name="quellen">Messquellen</string>
+    <string name="quelle">Messquelle</string>
+    <string name="mess">Messw</string>
+    <string name="wert">ert</string>
     <string name="einheiten">Einheiten</string>
     <string name="button1">aktualisieren</string>
     <string name="aktualisiert">aktualisiert</string>
@@ -21,6 +23,9 @@
     <string name="schalter08">Schalter 8</string>
         
     <string name="impressum">Impressum</string>
+    <string name="kurs">Kurs: TIT09IN</string>
+    <string name="studienarbeit">Studienarbeit: Fernüberwachung und Fernsteuerung eines AVR über das 
+Internet (Android Applikation)</string>
     <string name="autoren">Autoren: Hans-Joachim Krauch und Waldemar Siebert</string>
     <string name="betreuer">Betreuer: Klaus Hartmann</string>
 

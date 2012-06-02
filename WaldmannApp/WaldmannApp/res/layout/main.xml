@@ -43,33 +43,35 @@
                         android:id="@+id/tableLayoutData"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
                         android:stretchColumns="*" >
 
                         <TableRow
                             android:id="@+id/tableRowHead"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" >
+                            android:layout_height="wrap_content" 
+                            android:background="#4a4a4a">
 
                             <TextView
                                 android:id="@+id/textView01"
-                                android:layout_width="wrap_content"
+                                android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="left"
-                                android:text="@string/quellen" />
+                                android:text="@string/quelle" />
 
                             <TextView
                                 android:id="@+id/textView02"
-                                android:layout_width="wrap_content"
+                                android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
-                                android:text="@string/messwerte" />
+                                android:gravity="right"
+                                android:text="@string/mess" />
 
                             <TextView
                                 android:id="@+id/textView03"
-                                android:layout_width="wrap_content"
+                                android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
-                                android:text="@string/einheiten" />
+                                android:gravity="left"
+                                android:text="@string/wert" />
                         </TableRow>
 
                         <TableRow
@@ -99,13 +101,14 @@
                                 android:id="@+id/textView12"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:gravity="right" />
 
                             <TextView
                                 android:id="@+id/textView13"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:layout_marginLeft="2sp"
+                                android:gravity="left" />
                         </TableRow>
 
                         <TableRow
@@ -123,13 +126,14 @@
                                 android:id="@+id/textView22"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:gravity="right" />
 
                             <TextView
                                 android:id="@+id/textView23"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:layout_marginLeft="2sp"
+                                android:gravity="left" />
                         </TableRow>
 
                         <TableRow
@@ -147,13 +151,14 @@
                                 android:id="@+id/textView32"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:gravity="right" />
 
                             <TextView
                                 android:id="@+id/textView33"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:layout_marginLeft="2sp"
+                                android:gravity="left" />
                         </TableRow>
 
                         <TableRow
@@ -171,13 +176,14 @@
                                 android:id="@+id/textView42"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:gravity="right" />
 
                             <TextView
                                 android:id="@+id/textView43"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:layout_marginLeft="2sp"
+                                android:gravity="left" />
                         </TableRow>
 
                         <TableRow
@@ -195,13 +201,14 @@
                                 android:id="@+id/textView52"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:gravity="right" />
 
                             <TextView
                                 android:id="@+id/textView53"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:layout_marginLeft="2sp"
+                                android:gravity="left" />
                         </TableRow>
 
                         <TableRow
@@ -219,13 +226,14 @@
                                 android:id="@+id/textView62"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:gravity="right" />
 
                             <TextView
                                 android:id="@+id/textView63"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:layout_marginLeft="2sp"
+                                android:gravity="left" />
                         </TableRow>
 
                         <TableRow
@@ -243,13 +251,14 @@
                                 android:id="@+id/textView72"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:gravity="right" />
 
                             <TextView
                                 android:id="@+id/textView73"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:layout_marginLeft="2sp"
+                                android:gravity="left" />
                         </TableRow>
 
                         <TableRow
@@ -267,13 +276,14 @@
                                 android:id="@+id/textView82"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:gravity="right" />
 
                             <TextView
                                 android:id="@+id/textView83"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:layout_marginLeft="2sp"
+                                android:gravity="left" />
                         </TableRow>
 
                         <TableRow
@@ -291,13 +301,14 @@
                                 android:id="@+id/textView92"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:gravity="right" />
 
                             <TextView
                                 android:id="@+id/textView93"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:layout_marginLeft="2sp"
+                                android:gravity="left" />
                         </TableRow>
 
                         <TableRow
@@ -315,13 +326,14 @@
                                 android:id="@+id/textView102"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:gravity="right" />
 
                             <TextView
                                 android:id="@+id/textView103"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:layout_marginLeft="2sp"
+                                android:gravity="left" />
                         </TableRow>
 
                         <TableRow
@@ -339,13 +351,14 @@
                                 android:id="@+id/textView112"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:gravity="right" />
 
                             <TextView
                                 android:id="@+id/textView113"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:layout_marginLeft="2sp"
+                                android:gravity="left" />
                         </TableRow>
 
                         <TableRow
@@ -363,13 +376,14 @@
                                 android:id="@+id/textView122"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:gravity="right" />
 
                             <TextView
                                 android:id="@+id/textView123"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:layout_marginLeft="2sp"
+                                android:gravity="left" />
                         </TableRow>
 
                         <TableRow
@@ -387,13 +401,14 @@
                                 android:id="@+id/textView132"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:gravity="right" />
 
                             <TextView
                                 android:id="@+id/textView133"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:layout_marginLeft="2sp"
+                                android:gravity="left" />
                         </TableRow>
 
                         <TableRow
@@ -411,13 +426,14 @@
                                 android:id="@+id/textView142"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:gravity="right" />
 
                             <TextView
                                 android:id="@+id/textView143"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:layout_marginLeft="2sp"
+                                android:gravity="left" />
                         </TableRow>
 
                         <TableRow
@@ -435,13 +451,14 @@
                                 android:id="@+id/textView152"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:gravity="right" />
 
                             <TextView
                                 android:id="@+id/textView153"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:layout_marginLeft="2sp"
+                                android:gravity="left" />
                         </TableRow>
 
                         <TableRow
@@ -459,13 +476,14 @@
                                 android:id="@+id/textView162"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:gravity="right" />
 
                             <TextView
                                 android:id="@+id/textView163"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:layout_marginLeft="2sp"
+                                android:gravity="left" />
                         </TableRow>
 
                         <TableRow
@@ -483,13 +501,14 @@
                                 android:id="@+id/textView172"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:gravity="right" />
 
                             <TextView
                                 android:id="@+id/textView173"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:layout_marginLeft="2sp"
+                                android:gravity="left" />
                         </TableRow>
 
                         <TableRow
@@ -507,13 +526,14 @@
                                 android:id="@+id/textView182"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:gravity="right" />
 
                             <TextView
                                 android:id="@+id/textView183"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:layout_marginLeft="2sp"
+                                android:gravity="left" />
                         </TableRow>
 
                         <TableRow
@@ -531,13 +551,14 @@
                                 android:id="@+id/textView192"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:gravity="right" />
 
                             <TextView
                                 android:id="@+id/textView193"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:layout_marginLeft="2sp"
+                                android:gravity="left" />
                         </TableRow>
 
                         <TableRow
@@ -555,13 +576,14 @@
                                 android:id="@+id/textView202"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:gravity="right" />
 
                             <TextView
                                 android:id="@+id/textView203"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal" />
+                                android:layout_marginLeft="2sp"
+                                android:gravity="left" />
                         </TableRow>
                     </TableLayout>
                 </LinearLayout>
@@ -607,6 +629,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="10sp"
                                 android:text="@string/schalter01"
                                 android:textAppearance="?android:attr/textAppearanceLarge" />
                         </TableRow>
@@ -627,6 +650,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="10sp"
                                 android:text="@string/schalter02"
                                 android:textAppearance="?android:attr/textAppearanceLarge" />
                         </TableRow>
@@ -647,6 +671,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="10sp"
                                 android:text="@string/schalter03"
                                 android:textAppearance="?android:attr/textAppearanceLarge" />
                         </TableRow>
@@ -667,6 +692,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="10sp"
                                 android:text="@string/schalter04"
                                 android:textAppearance="?android:attr/textAppearanceLarge" />
                         </TableRow>
@@ -687,6 +713,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="10sp"
                                 android:text="@string/schalter05"
                                 android:textAppearance="?android:attr/textAppearanceLarge" />
                         </TableRow>
@@ -707,6 +734,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="10sp"
                                 android:text="@string/schalter06"
                                 android:textAppearance="?android:attr/textAppearanceLarge" />
                         </TableRow>
@@ -727,6 +755,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="10sp"
                                 android:text="@string/schalter07"
                                 android:textAppearance="?android:attr/textAppearanceLarge" />
                         </TableRow>
@@ -747,6 +776,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="10sp"
                                 android:text="@string/schalter08"
                                 android:textAppearance="?android:attr/textAppearanceLarge" />
                         </TableRow>
@@ -761,22 +791,31 @@
                 android:orientation="vertical" >
 
                 <TextView
+                    android:id="@+id/textViewI0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/studienarbeit"
+                    android:textColor="#71cc71"
+                    android:textSize="20dp" />
+
+                <TextView
                     android:id="@+id/textViewI1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:minLines="3"
+                    android:layout_marginBottom="8dp"
                     android:text="@string/autoren"
-                    android:textSize="15dp" >
-                </TextView>
+                    android:textColor="#5ca65c"
+                    android:textSize="20dp" />
 
                 <TextView
-                    android:id="@+id/textViewI2"
+                    android:id="@+id/textViewI3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:minLines="3"
+                    android:layout_marginBottom="8dp"
                     android:text="@string/betreuer"
-                    android:textSize="15dp" >
-                </TextView>
+                    android:textColor="#478047"
+                    android:textSize="20dp" />
 
                 <ImageView
                     android:id="@+id/dhbwLogo"

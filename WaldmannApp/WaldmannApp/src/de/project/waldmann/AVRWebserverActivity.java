@@ -277,7 +277,7 @@ public class AVRWebserverActivity extends Activity {
 
 				// ButtonText zum setzen des ButtonNamens
 				tv = (TextView) findViewById(getResources().getIdentifier(
-						"textView4" + i, "id", getPackageName()));
+						"textViewB" + i, "id", getPackageName()));
 
 				tv.setText(avrConn.sendMsg("wcmd SWITCH:NAME?(@" + i + ")"));
 
@@ -380,18 +380,22 @@ public class AVRWebserverActivity extends Activity {
 	}
 
 	private void setSwitchOff(int i) {
+		ToggleButton tb;
+
 		try {
 			avrConn.sendMsg("wcmd SWITCH:OFF(@" + i + ")");
 			// Abfrag ob Zustand geaendert wurde
 			if (avrConn.sendMsg("wcmd SWITCH:VALUE?(@" + i + ")").equals("0")) {
-				ToggleButton tb = (ToggleButton) findViewById(R.id.toggleButton1);
+				tb = (ToggleButton) findViewById(getResources().getIdentifier(
+						"toggleButton" + i, "id", getPackageName()));
 				tb.setChecked(false);
-				Toast.makeText(this, "OFF-OK", Toast.LENGTH_SHORT).show();
+				// Toast.makeText(this, "OFF-OK", Toast.LENGTH_SHORT).show();
 			} else {
 				// falls Zustand nicht geaendert wurde
-				ToggleButton tb = (ToggleButton) findViewById(R.id.toggleButton1);
+				tb = (ToggleButton) findViewById(getResources().getIdentifier(
+						"toggleButton" + i, "id", getPackageName()));
 				tb.setChecked(true);
-				Toast.makeText(this, "OFF-FAIL", Toast.LENGTH_SHORT).show();
+				// Toast.makeText(this, "OFF-FAIL", Toast.LENGTH_SHORT).show();
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -400,19 +404,23 @@ public class AVRWebserverActivity extends Activity {
 	}
 
 	private void setSwitchOn(int i) {
+		ToggleButton tb;
+
 		try {
 			avrConn.sendMsg("wcmd SWITCH:ON(@" + i + ")");
 			// Abfrag ob Zustand geaendert wurde
 			if (avrConn.sendMsg("wcmd SWITCH:VALUE?(@" + i + ")").equals("1")) {
-				ToggleButton tb = (ToggleButton) findViewById(R.id.toggleButton1);
+				tb = (ToggleButton) findViewById(getResources().getIdentifier(
+						"toggleButton" + i, "id", getPackageName()));
 				tb.setChecked(true);
-				Toast.makeText(this, "ON-OK", Toast.LENGTH_SHORT).show();
+				// Toast.makeText(this, "ON-OK", Toast.LENGTH_SHORT).show();
 			}
 			// falls Zustand nicht geaendert wurde
 			else {
-				ToggleButton tb = (ToggleButton) findViewById(R.id.toggleButton1);
+				tb = (ToggleButton) findViewById(getResources().getIdentifier(
+						"toggleButton" + i, "id", getPackageName()));
 				tb.setChecked(false);
-				Toast.makeText(this, "ON-FAIL", Toast.LENGTH_SHORT).show();
+				// Toast.makeText(this, "ON-FAIL", Toast.LENGTH_SHORT).show();
 			}
 		} catch (Exception e) {
 			Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
