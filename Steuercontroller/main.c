@@ -6,10 +6,10 @@
 #define SPI_DDR  DDRB
 
 /* PROTOTYPES */
-uint8_t extractChannelNumber(char *cmd);
+uint8_t extractChannelNumber(unsigned char *cmd);
 unsigned char SPI_WriteRead(unsigned char dataout);
 void sendSpiString(char *string);
-void handleCmd(char *cmd);
+void handleCmd(unsigned char *cmd);
 
 /* GLOBAL VARIABLES */
 char stbValues[4] = { '!', 'A', 'a', 'O' };
@@ -50,7 +50,7 @@ int main(void) {
 	return 1;
 }
 
-void handleCmd(char *cmd) {
+void handleCmd(unsigned char *cmd) {
 	uint8_t channel = 0;
 	uint8_t random = 0;
 
@@ -154,7 +154,7 @@ void handleCmd(char *cmd) {
 
 }
 
-uint8_t extractChannelNumber(char *cmd) {
+uint8_t extractChannelNumber(unsigned char *cmd) {
 	char *pAnfangChannel;
 	char channel[3];
 
