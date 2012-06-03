@@ -1,0 +1,60 @@
+<html>
+	<head>
+		<title>Waldmann-Projekt</title>
+		<link rel="stylesheet" href="Swm.c" type="text/css"/>
+		</head>
+	<body>
+		<div id="main_div">
+			<div id="header_div">
+				<img src="lg.png" alt="logo">
+				<div>
+					<h1>Waldmann-Projekt</h1>
+					<h4>Android Remote Control for AVR</h4>
+				</div>
+			</div>
+			<div id="topmenu_div">
+				<ul>
+					<li><a href="idx.ht">Home</a></li>
+					<li><a href="wcm.ht">Steuern</a></li>
+					<li><a href="imp.ht">Impressum</a></li>
+				</ul>
+			</div>
+			<div id="content_div">
+				<h2>Waldmann-Projekt</h2>
+				<h4>Beschreibung</h4>
+				<p>
+					Das Waldmann-Projekt ist im Rahmen einer Studienarbeit für die DHBW-Stuttgart entstanden. Ziel der Studienarbeit
+					war es, einen AVR-Mikrocontroller über eine Android-App fernsteuern zu können. Der Mikrokontroller erhält von der
+					App Steuerbefehle, welcher dieser an einen Steuercontroller weiterleitet und dessen angeschlossene Messquellen abfrägt
+					bzw. Schalter schaltet.
+				</p>
+				<p>
+					Basis des Projekts bildet der AVR-Mikrocontroller, welcher in ein Pollin AVR-NET-IO verbaut ist. Auf dem Mikrokontroller
+					läuft die <a href="http://www.ethersex.de">Ethersex</a>-Firmware, welche den Anforderungen des Projekts 
+					entsprechend angepasst wurde. Ethersex bringt bereits einen HTTP-Server mit, sowie zahlreiche weitere nützliche Features.
+				</p>
+				<p>
+					Am Steuercontroller können bis zu 20 Messquellen angeschlossen werden, deren Werte vom Ethersex-Controller abgerufen werden.
+					Desweiteren können bis zu 8 Schalter geschaltet werden. Hierzu kann entweder die Android-App, oder die 
+					<a href="wcm.ht">Steuerung</a>-Seite verwendet werden, welche (so wie diese Webseite) auf dem HTTP-Server des
+					Ethersex-Controllers implementiert wurde. 
+				</p>
+				<h4>Dokumentation</h4>
+				<p>
+					Für die Programmierung des Projekts wurde die Versionsverwaltung Git verwendet. Das Repository ist auf Google Code gehostet
+					und ist unter <a href="https://code.google.com/p/waldmann/">https://code.google.com/p/waldmann/</a> erreichbar. Auf dem 
+					Repository sind alle Bestandteile des Projekts einzusehen, dazu gehören:
+					<ul>
+						<li>Dokumentation, mit Bildern, Beschreibungen etc.</li>
+						<li>Quellcode der angepassten Ethersex-Firmware</li>
+						<li>Quellcode der Android-App</li>
+						<li>Quellcode des Vorführ-Steuercontrollers</li>					
+					</ul>
+				</p>
+			</div>
+			<div id="footer_div">
+				<span>&copy; 2012 Waldemar Siebert, Hans-Joachim Krauch</span>
+			</div>
+		</div>
+	</body>
+</html>
