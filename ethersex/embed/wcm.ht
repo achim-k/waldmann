@@ -6,16 +6,48 @@
 		<script type="text/javascript">
 			function wcmd_refresh()
 			{
-				wcmd_get_source	();
+				ArrAjax.ecmd('wcmd *STB?',wcmd_stb_handler);
+				ArrAjax.ecmd('wcmd *CLS');
 				wcmd_get_switch();
 			}
 
-			function wcmd_get_source()
+			function wcmd_stb_handler(request, data)
+			{
+				if(request.responseText == "!")
+					alert('Keine neuen Messwerte/Namen');
+				else if(request.responseText == "A")
+					wcmd_get_source_value();
+				else if(request.responseText == "A")
+					wcmd_get_source_value();
+				else if(request.responseText == "a")
+					wcmd_get_source_name();
+				else if(request.responseText == "0")
+				{
+					wcmd_get_source_name();
+					wcmd_get_source_value();
+				}
+			}
+						
+			function wcmd_get_source_name()
 			{
 				for (var i = 1; i <= 20; i++)
 				{
 					ArrAjax.ecmd('wcmd SOURCE:NAME?(@'+i+')',wcmd_source_handler_name,undefined,i);
+				}
+			}
+			
+			function wcmd_get_source_value()
+			{
+				for (var i = 1; i <= 20; i++)
+				{
 					ArrAjax.ecmd('wcmd SOURCE:VALUE?(@'+i+')',wcmd_source_handler_value,undefined,i);
+				}
+			}
+			
+			function wcmd_get_source_unit()
+			{
+				for (var i = 1; i <= 20; i++)
+				{
 					ArrAjax.ecmd('wcmd SOURCE:UNIT?(@'+i+')',wcmd_source_handler_unit,undefined,i);
 				}
 			}
@@ -100,7 +132,11 @@
 					if(i % 2 == 1)
 						row.className = 'even_row';
 				}
-				wcmd_refresh();
+				wcmd_get_source_name();
+				wcmd_get_source_value();
+				wcmd_get_source_unit();
+				wcmd_get_switch();
+				
 				//setInterval('ecmd_adc_req()', 5000);
 
 			}

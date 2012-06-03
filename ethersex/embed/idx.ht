@@ -35,7 +35,7 @@
 				</p>
 				<p>
 					Am Steuercontroller können bis zu 20 Messquellen angeschlossen werden, deren Werte vom Ethersex-Controller abgerufen werden.
-					Desweiteren können bis zu 8 Schalter geschaltet werden. Hierzu kann entweder die Android-App, oder die 
+					Desweiteren können bis zu 8 Schalter geschaltet werden. Hierzu kann entweder die Android-App oder die 
 					<a href="wcm.ht">Steuerung</a>-Seite verwendet werden, welche (so wie diese Webseite) auf dem HTTP-Server des
 					Ethersex-Controllers implementiert wurde. 
 				</p>
