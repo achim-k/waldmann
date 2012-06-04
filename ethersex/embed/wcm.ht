@@ -13,19 +13,21 @@
 
 			function wcmd_stb_handler(request, data)
 			{
-				if(request.responseText == "!")
+				var retString = request.responseText.replace(/(\r\n|\n|\r|\s)/gm,"");
+				
+				if(retString == "!")
 					alert('Keine neuen Messwerte/Namen');
-				else if(request.responseText == "A")
+				else if(retString == "A")
 					wcmd_get_source_value();
-				else if(request.responseText == "A")
-					wcmd_get_source_value();
-				else if(request.responseText == "a")
+				else if(retString == "a")
 					wcmd_get_source_name();
-				else if(request.responseText == "0")
+				else if(retString == "O")
 				{
 					wcmd_get_source_name();
 					wcmd_get_source_value();
 				}
+				else
+					alert('String_compare_fail ('+retString+')');
 			}
 						
 			function wcmd_get_source_name()
@@ -94,11 +96,15 @@
 			{
 				if (ecmd_error(request))
 					return;
+				
+				var retString = request.responseText.replace(/(\r\n|\n|\r|\s)/gm,"");
 
-				if(request.responseText == "1")
+				if(retString == "1")
 					$("switch_value"+data).innerHTML = '<span class="switch_on">ON</span>';
-				else if(request.responseText == "0")
+				else if(retString == "0")
 					$("switch_value"+data).innerHTML = '<span class="switch_off">OFF</span>';
+				else
+					$("switch_value"+data).innerHTML = '<span class="switch_off">UNDEF</span>';
 			}
 			
 
