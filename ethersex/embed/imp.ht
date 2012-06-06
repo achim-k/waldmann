@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<title>Waldmann-Projekt</title>
+		<link rel="stylesheet" href="Swm.c" type="text/css"/>
+		</head>
+	<body>
+		<div id="main_div">
+			<div id="header_div">
+				<img src="lg.png" alt="logo">
+				<div>
+					<h1>Waldmann-Projekt</h1>
+					<h4>Android Remote Control for AVR</h4>
+				</div>
+			</div>
+			<div id="topmenu_div">
+				<ul>
+					<li><a href="idx.ht">Home</a></li>
+					<li><a href="wcm.ht">Steuern</a></li>
+					<li><a href="imp.ht">Impressum</a></li>
+				</ul>
+			</div>
+			<div id="content_div">
+				<h2>Impressum</h2>
+				<h4>Projekt</h4>
+				<p>
+					Umsetzung: Waldemar Siebert, Hans-Joachim Krauch (TIT09IN, DHBW-Stuttgart)
+				</p>
+				<p>
+					Betreuung: Klaus Hartmann
+				</p>
+				<p>
+					Erstelldatum: 03.06.2012
+				</p>
+				<h4>Allgemein</h4>
+				<p>
+					Diese Website enthält Verknüpfungen zu Websites Dritter ("externe Links"). Diese Websites unterliegen der Haftung der jeweiligen Betreiber. Der Anbieter hat bei der erstmaligen Verknüpfung der externen Links die fremden Inhalte daraufhin überprüft, ob etwaige Rechtsverstöße bestehen. Zu dem Zeitpunkt waren keine Rechtsverstöße ersichtlich. Der Anbieter hat keinerlei Einfluss auf die aktuelle und zukünftige Gestaltung und auf die Inhalte der verknüpften Seiten. Das Setzen von externen Links bedeutet nicht, dass sich der Anbieter die hinter dem Verweis oder Link liegenden Inhalte zu Eigen macht. Eine ständige Kontrolle der externen Links ist für den Anbieter ohne konkrete Hinweise auf Rechtsverstöße nicht zumutbar. Bei Kenntnis von Rechtsverstößen werden jedoch derartige externe Links unverzüglich gelöscht.
+				</p>
+			</div>
+			<div id="footer_div">
+				<span>&copy; 2012 Waldemar Siebert, Hans-Joachim Krauch</span>
+			</div>
+		</div>
+	</body>
+</html>
