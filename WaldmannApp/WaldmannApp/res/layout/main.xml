@@ -49,14 +49,15 @@
                         <TableRow
                             android:id="@+id/tableRowHead"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" 
-                            android:background="#4a4a4a">
+                            android:layout_height="wrap_content"
+                            android:background="#4a4a4a" >
 
                             <TextView
                                 android:id="@+id/textView01"
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="left"
+                                android:layout_marginLeft="2sp"
                                 android:text="@string/quelle" />
 
                             <TextView
@@ -92,7 +93,7 @@
                             android:layout_height="wrap_content" >
 
                             <TextView
-                                android:id="@+id/textView11"
+                                android:id="@+id/textView11" android:layout_marginLeft="2sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="left" />
@@ -108,16 +109,19 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="2sp"
-                                android:gravity="left" />
+                                android:gravity="left"
+                                android:textColor="#5ca65c"
+                                android:textStyle="italic" />
                         </TableRow>
 
                         <TableRow
                             android:id="@+id/tableRow2"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" >
+                            android:layout_height="wrap_content"
+                            android:background="#212121" >
 
                             <TextView
-                                android:id="@+id/textView21"
+                                android:id="@+id/textView21" android:layout_marginLeft="2sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="left" />
@@ -133,7 +137,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="2sp"
-                                android:gravity="left" />
+                                android:gravity="left"
+                                android:textColor="#5ca65c"
+                                android:textStyle="italic" />
                         </TableRow>
 
                         <TableRow
@@ -142,7 +148,7 @@
                             android:layout_height="wrap_content" >
 
                             <TextView
-                                android:id="@+id/textView31"
+                                android:id="@+id/textView31" android:layout_marginLeft="2sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="left" />
@@ -158,16 +164,19 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="2sp"
-                                android:gravity="left" />
+                                android:gravity="left"
+                                android:textColor="#5ca65c"
+                                android:textStyle="italic" />
                         </TableRow>
 
                         <TableRow
                             android:id="@+id/tableRow4"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" >
+                            android:layout_height="wrap_content"
+                            android:background="#212121" >
 
                             <TextView
-                                android:id="@+id/textView41"
+                                android:id="@+id/textView41" android:layout_marginLeft="2sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="left" />
@@ -183,7 +192,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="2sp"
-                                android:gravity="left" />
+                                android:gravity="left"
+                                android:textColor="#5ca65c"
+                                android:textStyle="italic" />
                         </TableRow>
 
                         <TableRow
@@ -192,7 +203,7 @@
                             android:layout_height="wrap_content" >
 
                             <TextView
-                                android:id="@+id/textView51"
+                                android:id="@+id/textView51" android:layout_marginLeft="2sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="left" />
@@ -208,16 +219,19 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="2sp"
-                                android:gravity="left" />
+                                android:gravity="left"
+                                android:textColor="#5ca65c"
+                                android:textStyle="italic" />
                         </TableRow>
 
                         <TableRow
                             android:id="@+id/tableRow6"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" >
+                            android:layout_height="wrap_content"
+                            android:background="#212121" >
 
                             <TextView
-                                android:id="@+id/textView61"
+                                android:id="@+id/textView61" android:layout_marginLeft="2sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="left" />
@@ -233,7 +247,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="2sp"
-                                android:gravity="left" />
+                                android:gravity="left"
+                                android:textColor="#5ca65c"
+                                android:textStyle="italic" />
                         </TableRow>
 
                         <TableRow
@@ -242,7 +258,7 @@
                             android:layout_height="wrap_content" >
 
                             <TextView
-                                android:id="@+id/textView71"
+                                android:id="@+id/textView71" android:layout_marginLeft="2sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="left" />
@@ -258,16 +274,19 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="2sp"
-                                android:gravity="left" />
+                                android:gravity="left"
+                                android:textColor="#5ca65c"
+                                android:textStyle="italic" />
                         </TableRow>
 
                         <TableRow
                             android:id="@+id/tableRow8"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" >
+                            android:layout_height="wrap_content"
+                            android:background="#212121" >
 
                             <TextView
-                                android:id="@+id/textView81"
+                                android:id="@+id/textView81" android:layout_marginLeft="2sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="left" />
@@ -283,7 +302,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="2sp"
-                                android:gravity="left" />
+                                android:gravity="left"
+                                android:textColor="#5ca65c"
+                                android:textStyle="italic" />
                         </TableRow>
 
                         <TableRow
@@ -292,7 +313,7 @@
                             android:layout_height="wrap_content" >
 
                             <TextView
-                                android:id="@+id/textView91"
+                                android:id="@+id/textView91" android:layout_marginLeft="2sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="left" />
@@ -308,16 +329,19 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="2sp"
-                                android:gravity="left" />
+                                android:gravity="left"
+                                android:textColor="#5ca65c"
+                                android:textStyle="italic" />
                         </TableRow>
 
                         <TableRow
                             android:id="@+id/tableRow10"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" >
+                            android:layout_height="wrap_content"
+                            android:background="#212121" >
 
                             <TextView
-                                android:id="@+id/textView101"
+                                android:id="@+id/textView101" android:layout_marginLeft="2sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="left" />
@@ -333,7 +357,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="2sp"
-                                android:gravity="left" />
+                                android:gravity="left"
+                                android:textColor="#5ca65c"
+                                android:textStyle="italic" />
                         </TableRow>
 
                         <TableRow
@@ -342,7 +368,7 @@
                             android:layout_height="wrap_content" >
 
                             <TextView
-                                android:id="@+id/textView111"
+                                android:id="@+id/textView111" android:layout_marginLeft="2sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="left" />
@@ -358,16 +384,19 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="2sp"
-                                android:gravity="left" />
+                                android:gravity="left"
+                                android:textColor="#5ca65c"
+                                android:textStyle="italic" />
                         </TableRow>
 
                         <TableRow
                             android:id="@+id/tableRow12"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" >
+                            android:layout_height="wrap_content"
+                            android:background="#212121" >
 
                             <TextView
-                                android:id="@+id/textView121"
+                                android:id="@+id/textView121" android:layout_marginLeft="2sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="left" />
@@ -383,7 +412,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="2sp"
-                                android:gravity="left" />
+                                android:gravity="left"
+                                android:textColor="#5ca65c"
+                                android:textStyle="italic" />
                         </TableRow>
 
                         <TableRow
@@ -392,7 +423,7 @@
                             android:layout_height="wrap_content" >
 
                             <TextView
-                                android:id="@+id/textView131"
+                                android:id="@+id/textView131" android:layout_marginLeft="2sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="left" />
@@ -408,16 +439,19 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="2sp"
-                                android:gravity="left" />
+                                android:gravity="left"
+                                android:textColor="#5ca65c"
+                                android:textStyle="italic" />
                         </TableRow>
 
                         <TableRow
                             android:id="@+id/tableRow14"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" >
+                            android:layout_height="wrap_content"
+                            android:background="#212121" >
 
                             <TextView
-                                android:id="@+id/textView141"
+                                android:id="@+id/textView141" android:layout_marginLeft="2sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="left" />
@@ -433,7 +467,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="2sp"
-                                android:gravity="left" />
+                                android:gravity="left"
+                                android:textColor="#5ca65c"
+                                android:textStyle="italic" />
                         </TableRow>
 
                         <TableRow
@@ -442,7 +478,7 @@
                             android:layout_height="wrap_content" >
 
                             <TextView
-                                android:id="@+id/textView151"
+                                android:id="@+id/textView151" android:layout_marginLeft="2sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="left" />
@@ -458,16 +494,19 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="2sp"
-                                android:gravity="left" />
+                                android:gravity="left"
+                                android:textColor="#5ca65c"
+                                android:textStyle="italic" />
                         </TableRow>
 
                         <TableRow
                             android:id="@+id/tableRow16"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" >
+                            android:layout_height="wrap_content"
+                            android:background="#212121" >
 
                             <TextView
-                                android:id="@+id/textView161"
+                                android:id="@+id/textView161" android:layout_marginLeft="2sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="left" />
@@ -483,7 +522,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="2sp"
-                                android:gravity="left" />
+                                android:gravity="left"
+                                android:textColor="#5ca65c"
+                                android:textStyle="italic" />
                         </TableRow>
 
                         <TableRow
@@ -492,7 +533,7 @@
                             android:layout_height="wrap_content" >
 
                             <TextView
-                                android:id="@+id/textView171"
+                                android:id="@+id/textView171" android:layout_marginLeft="2sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="left" />
@@ -508,16 +549,19 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="2sp"
-                                android:gravity="left" />
+                                android:gravity="left"
+                                android:textColor="#5ca65c"
+                                android:textStyle="italic" />
                         </TableRow>
 
                         <TableRow
                             android:id="@+id/tableRow18"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" >
+                            android:layout_height="wrap_content"
+                            android:background="#212121" >
 
                             <TextView
-                                android:id="@+id/textView181"
+                                android:id="@+id/textView181" android:layout_marginLeft="2sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="left" />
@@ -533,7 +577,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="2sp"
-                                android:gravity="left" />
+                                android:gravity="left"
+                                android:textColor="#5ca65c"
+                                android:textStyle="italic" />
                         </TableRow>
 
                         <TableRow
@@ -542,7 +588,7 @@
                             android:layout_height="wrap_content" >
 
                             <TextView
-                                android:id="@+id/textView191"
+                                android:id="@+id/textView191" android:layout_marginLeft="2sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="left" />
@@ -558,16 +604,19 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="2sp"
-                                android:gravity="left" />
+                                android:gravity="left"
+                                android:textColor="#5ca65c"
+                                android:textStyle="italic" />
                         </TableRow>
 
                         <TableRow
                             android:id="@+id/tableRow20"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" >
+                            android:layout_height="wrap_content"
+                            android:background="#212121" >
 
                             <TextView
-                                android:id="@+id/textView201"
+                                android:id="@+id/textView201" android:layout_marginLeft="2sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="left" />
@@ -583,7 +632,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="2sp"
-                                android:gravity="left" />
+                                android:gravity="left"
+                                android:textColor="#5ca65c"
+                                android:textStyle="italic" />
                         </TableRow>
                     </TableLayout>
                 </LinearLayout>
@@ -796,7 +847,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:text="@string/studienarbeit"
-                    android:textColor="#71cc71"
+                    android:textColor="#5ca65c"
                     android:textSize="20dp" />
 
                 <TextView
@@ -814,7 +865,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:text="@string/betreuer"
-                    android:textColor="#478047"
+                    android:textColor="#5ca65c"
                     android:textSize="20dp" />
 
                 <ImageView

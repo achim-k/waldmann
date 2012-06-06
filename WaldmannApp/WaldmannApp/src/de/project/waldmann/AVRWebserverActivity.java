@@ -2,6 +2,8 @@ package de.project.waldmann;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.util.zip.Inflater;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.LocalActivityManager;
@@ -9,6 +11,9 @@ import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.Editable;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -70,7 +75,6 @@ public class AVRWebserverActivity extends Activity {
 
 		// TCPSocket einstellungen
 		showAddressDialog();
-
 	}
 
 	@Override
@@ -397,7 +401,7 @@ public class AVRWebserverActivity extends Activity {
 				tb.setChecked(true);
 				// Toast.makeText(this, "OFF-FAIL", Toast.LENGTH_SHORT).show();
 			}
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
 		}
@@ -426,5 +430,27 @@ public class AVRWebserverActivity extends Activity {
 			Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
 		}
 	}
+
 	// SchalterTab - END
+
+	// Menu - BEGIN
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.menu, menu);
+		return true;
+	};
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.item1:
+			showAddressDialog();
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+
+	// Menu - END
+
 }
