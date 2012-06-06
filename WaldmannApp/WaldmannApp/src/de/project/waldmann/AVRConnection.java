@@ -8,13 +8,14 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+// Die Verbindung wurde durch einen TCPSocket realisiert.
+// Um sicherzustellen, dass es nur ein Verbindungsobjekt gibt
+// wurde es als Singleton implementiert.
 public class AVRConnection {
 
 	private static AVRConnection instance = null;
 
-	// TCP Verbindungskomponenten
-
-	// String message;
+	// TCP Verbindungs Komponenten
 	String rtrnMsg;
 	static Socket tcpSocket;
 	DataOutputStream writeStream;
@@ -22,9 +23,10 @@ public class AVRConnection {
 	InetAddress avrIp;
 
 	private AVRConnection() {
-		// TODO Auto-generated constructor stub
 	}
 
+	// dient der einmaligen Instanziierung und wird durch den privaten
+	// Konstruktor unterstuetzt
 	public static AVRConnection getInstance() {
 		if (instance == null) {
 			instance = new AVRConnection();
@@ -33,6 +35,7 @@ public class AVRConnection {
 	}
 
 	// verbinden
+	// bindet den Socket an eine IP und einen Port fuer die Kommunikation
 	public void connect(String avrIpStr, int port) throws UnknownHostException,
 			IOException {
 		avrIp = InetAddress.getByName(avrIpStr);
@@ -46,6 +49,7 @@ public class AVRConnection {
 	}
 
 	// trennen
+	// schliesst alle Streams und den Socket
 	public void disconnect() throws IOException {
 		if (writeStream != null)
 			writeStream.close();
@@ -55,6 +59,8 @@ public class AVRConnection {
 			tcpSocket.close();
 	}
 
+	// senden
+	// dient dem Senden und Empfangen von Nachrichten
 	public String sendMsg(String msg) throws IOException {
 
 		writeStream.writeBytes(msg + '\n');
@@ -64,26 +70,7 @@ public class AVRConnection {
 		rtrnMsg = cutIt.substring(0,
 				(cutIt.length() >= 30) ? 30 : cutIt.length());
 
-		// rtrnMsg = cutString().toString();
-
 		return rtrnMsg;
 
 	}
-
-	/*
-	 * //Stringverarbeitung, um 30x20 Feld zu erstellen private StringBuffer
-	 * cutString() { // Abgrenzen von 20 Zeichen - BEGIN StringBuffer feldStr =
-	 * new StringBuffer("");
-	 * 
-	 * // wenn die Antwort 30 oder mehr Zeichen hat wird ein newline nach 30 //
-	 * zeichen eingefuegt if (rtrnMsg.length() >= 30) { int i = 1; for (; ((30 *
-	 * i) <= rtrnMsg.length() && i <= 20); ++i) {
-	 * feldStr.append(rtrnMsg.substring(30 * (i - 1), 30 * i)).append( "\n"); }
-	 * if (i <= 20) // wenn die Anzahl der Zeichen kein Teiler von 30 ist
-	 * feldStr.append(rtrnMsg.substring(30 * (i - 1), rtrnMsg.length())); } else
-	 * { // falls die Anzahl von Zeichen unter 30 ist feldStr.append(rtrnMsg); }
-	 * 
-	 * return feldStr; // Abgrenzen von 20 Zeichen - END }
-	 */
-
 }

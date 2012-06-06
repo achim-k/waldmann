@@ -25,11 +25,9 @@ import android.widget.ToggleButton;
 
 public class AVRWebserverActivity extends Activity {
 
-	// ActivityMngr fuer TabActivity
+	// ActivityManager um eine TabActivity zu machen, ohne TabActivity zu erben
 	LocalActivityManager mlam;
 
-	// cut String
-	String rtrnStr;
 	static AVRConnection avrConn;
 	static String ipStr;
 
@@ -39,9 +37,9 @@ public class AVRWebserverActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		// manuell TabActivity erstellen
 		Resources res = getResources();
 
+		// manuell TabActivity erstellen
 		mlam = new LocalActivityManager(this, false);
 
 		TabHost tabHost = (TabHost) findViewById(android.R.id.tabhost);
@@ -49,6 +47,7 @@ public class AVRWebserverActivity extends Activity {
 		mlam.dispatchCreate(savedInstanceState);
 		tabHost.setup(mlam);
 
+		// die 3 Tabs hinzufuegen zum tabHost
 		TabHost.TabSpec spec;
 		spec = tabHost
 				.newTabSpec("messwerte")
@@ -73,7 +72,7 @@ public class AVRWebserverActivity extends Activity {
 
 		tabHost.setCurrentTabByTag("messwerte");
 
-		// TCPSocket einstellungen
+		// IP Einstellungen beim starten der App
 		showAddressDialog();
 	}
 
@@ -92,6 +91,7 @@ public class AVRWebserverActivity extends Activity {
 	@Override
 	protected void onRestart() {
 		super.onRestart();
+		// beim start aus dem Hintergrund, wird die Verbindung wieder aufgebaut
 		try {
 			avrConn = AVRConnection.getInstance();
 			avrConn.connect(ipStr, 2701);
@@ -107,6 +107,7 @@ public class AVRWebserverActivity extends Activity {
 	@Override
 	protected void onStop() {
 		super.onStop();
+		// beim Beenden der Anwendung wird die Verbindung abgebaut
 		try {
 			avrConn = AVRConnection.getInstance();
 			avrConn.disconnect();
@@ -116,51 +117,10 @@ public class AVRWebserverActivity extends Activity {
 		}
 	}
 
-	// MesswertTab - BEGIN
-	void initButtons() {
-
-		Button button1 = (Button) findViewById(R.id.button1);
-		Button button2 = (Button) findViewById(R.id.button2);
-
-		button1.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				try {
-					String rtrnStr = avrConn.sendMsg("wcmd *STB?");
-					if (rtrnStr.equals("O")) {
-						updateDataAndNames();
-						avrConn.sendMsg("wcmd *CLS");
-					} else if (rtrnStr.equals("a")) {
-						updateNames();
-						avrConn.sendMsg("wcmd *CLS");
-					} else if (rtrnStr.equals("A")) {
-						updateData();
-						avrConn.sendMsg("wcmd *CLS");
-					} else {
-						Toast.makeText(getApplicationContext(),
-								R.string.nichtsNeues, Toast.LENGTH_SHORT)
-								.show();
-					}
-
-				} catch (IOException e) {
-					e.printStackTrace();
-					Toast.makeText(getApplicationContext(), e.getMessage(),
-							Toast.LENGTH_SHORT).show();
-				}
-			}
-		});
-
-		button2.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-				updateSwitches();
-			}
-		});
-
-	}
-
+	// dieses AlarmFenster erscheint beim Start der Anwendung
+	// nach dem Druck auf den Button wird die Verbindung mit dem AVR aufgebaut
+	// und dann die Namen der Messquellen, die Messwerte und Einheiten, sowie
+	// die Namen der Schalter und deren Zustaende vom AVR geholt.
 	void showAddressDialog() {
 
 		// Eingabe der AVR-Serveraddresse
@@ -186,7 +146,6 @@ public class AVRWebserverActivity extends Activity {
 									updateDataAndNames();
 									updateSwitches();
 
-									// Logik des messwerteTab
 									initButtons();
 
 								} catch (UnknownHostException e) {
@@ -204,15 +163,68 @@ public class AVRWebserverActivity extends Activity {
 						}).show();
 	}
 
+	// onClickListener auf die Buttons zum aktualisieren gelegt
+	void initButtons() {
+
+		Button button1 = (Button) findViewById(R.id.button1);
+		Button button2 = (Button) findViewById(R.id.button2);
+
+		button1.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				try {
+					// hier wird das Statusbyte abgefragt
+					// je nach Antwort werden Messwerte, Quellnamen,
+					// beides, oder garkeine Werte abgefragt
+					String rtrnStr = avrConn.sendMsg("wcmd *STB?");
+					if (rtrnStr.equals("O")) {
+						updateDataAndNames();
+						avrConn.sendMsg("wcmd *CLS");
+					} else if (rtrnStr.equals("a")) {
+						updateNames();
+						avrConn.sendMsg("wcmd *CLS");
+					} else if (rtrnStr.equals("A")) {
+						updateData();
+						avrConn.sendMsg("wcmd *CLS");
+					} else {
+						Toast.makeText(getApplicationContext(),
+								R.string.nichtsNeues, Toast.LENGTH_SHORT)
+								.show();
+					}
+
+				} catch (IOException e) {
+					e.printStackTrace();
+					Toast.makeText(getApplicationContext(), e.getMessage(),
+							Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
+
+		button2.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				// beim Aktualisieren Button im Schalter Tab
+				// werden die Zustaende der Schalter abgefragt
+				updateSwitches();
+			}
+		});
+
+	}
+
+	// MesswertTab - BEGIN
+
+	// Abfrage von Messquellnamen und Messwerten und Einheiten
 	void updateDataAndNames() {
 		TextView log;
 		try {
-			// 10.0.2.2 ist der Localhost des PC auf dem das virt.Device laeuft
-			// avrConn.connect("10.0.2.2", 8001);
+			// Abfrage von allen 20 Messquellen
 			for (int i = 1; i <= 20; ++i) {
-
+				// holen der TextView durch die Ressource ID
 				log = (TextView) findViewById(getResources().getIdentifier(
 						"textView" + i + "1", "id", getPackageName()));
+				// Text der geholten TextView setzen. Der Inhalt soll die
+				// Antwort auf die an den AVR gesendete Nachricht sein.
 				log.setText(avrConn.sendMsg("wcmd SOURCE:NAME?(@" + i + ")"));
 
 				log = (TextView) findViewById(getResources().getIdentifier(
@@ -231,6 +243,7 @@ public class AVRWebserverActivity extends Activity {
 		}
 	}
 
+	// aktualisieren der Messwerte
 	private void updateData() {
 		TextView log;
 		try {
@@ -247,6 +260,7 @@ public class AVRWebserverActivity extends Activity {
 		}
 	}
 
+	// aktualisieren der Quellnamen
 	private void updateNames() {
 		TextView log;
 		try {
@@ -265,6 +279,7 @@ public class AVRWebserverActivity extends Activity {
 
 	// MesswertTab - END
 
+	
 	// SchalterTab - BEGIN
 
 	// Abfrage aller Schalter
@@ -275,11 +290,11 @@ public class AVRWebserverActivity extends Activity {
 		try {
 
 			for (int i = 1; i <= 8; ++i) {
-				// Button zum setzen des Status
+				// ToggleButton zum setzen des Status
 				tb = (ToggleButton) findViewById(getResources().getIdentifier(
 						"toggleButton" + i, "id", getPackageName()));
 
-				// ButtonText zum setzen des ButtonNamens
+				// TextVIew zum setzen des ButtonNamens
 				tv = (TextView) findViewById(getResources().getIdentifier(
 						"textViewB" + i, "id", getPackageName()));
 
@@ -287,6 +302,7 @@ public class AVRWebserverActivity extends Activity {
 
 				if (avrConn.sendMsg("wcmd SWITCH:VALUE?(@" + i + ")").equals(
 						"1"))
+					// Button auf ON, wenn Rueckgabewert 1 kommt
 					tb.setChecked(true);
 				else {
 					tb.setChecked(false);
@@ -303,6 +319,7 @@ public class AVRWebserverActivity extends Activity {
 
 	}
 
+	// wird aufgerufen, wenn Schalter1 gedrueckt wird
 	public void checkTB01(View v) {
 		if (((ToggleButton) v).isChecked()) {
 			// Button auf ON
@@ -383,6 +400,7 @@ public class AVRWebserverActivity extends Activity {
 		}
 	}
 
+	// Schalter auf OFF setzen
 	private void setSwitchOff(int i) {
 		ToggleButton tb;
 
@@ -393,13 +411,11 @@ public class AVRWebserverActivity extends Activity {
 				tb = (ToggleButton) findViewById(getResources().getIdentifier(
 						"toggleButton" + i, "id", getPackageName()));
 				tb.setChecked(false);
-				// Toast.makeText(this, "OFF-OK", Toast.LENGTH_SHORT).show();
 			} else {
 				// falls Zustand nicht geaendert wurde
 				tb = (ToggleButton) findViewById(getResources().getIdentifier(
 						"toggleButton" + i, "id", getPackageName()));
 				tb.setChecked(true);
-				// Toast.makeText(this, "OFF-FAIL", Toast.LENGTH_SHORT).show();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -407,6 +423,7 @@ public class AVRWebserverActivity extends Activity {
 		}
 	}
 
+	// Schalter auf ON setzen
 	private void setSwitchOn(int i) {
 		ToggleButton tb;
 
@@ -417,14 +434,12 @@ public class AVRWebserverActivity extends Activity {
 				tb = (ToggleButton) findViewById(getResources().getIdentifier(
 						"toggleButton" + i, "id", getPackageName()));
 				tb.setChecked(true);
-				// Toast.makeText(this, "ON-OK", Toast.LENGTH_SHORT).show();
 			}
 			// falls Zustand nicht geaendert wurde
 			else {
 				tb = (ToggleButton) findViewById(getResources().getIdentifier(
 						"toggleButton" + i, "id", getPackageName()));
 				tb.setChecked(false);
-				// Toast.makeText(this, "ON-FAIL", Toast.LENGTH_SHORT).show();
 			}
 		} catch (Exception e) {
 			Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
