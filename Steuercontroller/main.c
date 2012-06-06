@@ -31,7 +31,7 @@ int main(void) {
 	// Enable SPI as Slave
 	SPCR = (1 << SPE);
 
-	PORTC = ~switchState;
+	PORTC = ~0x0F;	//Startzustand, 4 LEDs leuchten, wenn noch keine Befehle erhalten
 	while (1) {
 		//Befehl einlesen (max. 32 Zeichen)
 		for (counter = 0; counter < 32; counter++) {
